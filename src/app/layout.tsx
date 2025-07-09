@@ -1,3 +1,4 @@
+import company from '@/config/company';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import Footer from '../components/Footer';
@@ -15,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Eterna Teknik Servis',
-  description: 'Beyaz eşya teknik servis çözümleriniz için Eterna yanınızda.',
+  title: company.name,
+  description: company.slogan,
 };
 
 export default function RootLayout({
@@ -24,8 +25,46 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: company.name,
+    legalName: company.legalName,
+    description: company.slogan,
+    telephone: company.phone,
+    email: company.email,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: company.address.street,
+      addressLocality: company.address.district,
+      addressRegion: company.address.city,
+      postalCode: company.address.zip,
+      addressCountry: 'TR',
+    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '08:00',
+        closes: '19:00',
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: 'Saturday',
+        opens: '08:00',
+        closes: '17:00',
+      },
+    ],
+  };
+
   return (
     <html lang="tr">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
       >
