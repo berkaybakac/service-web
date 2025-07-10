@@ -1,10 +1,3 @@
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Gizlilik Politikası | Eterna Teknik Servis',
-  description:
-    'Kullanıcı gizliliğine verdiğimiz önemi ve kişisel verilerin nasıl korunduğunu öğrenin.',
-};
 export default function PrivacyPolicyPage() {
   return (
     <main className="bg-black text-white px-6 py-12">
