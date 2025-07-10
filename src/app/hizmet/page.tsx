@@ -1,6 +1,5 @@
 'use client';
 
-import Warning from '@/components/Warning';
 import Head from 'next/head';
 import { useSearchParams } from 'next/navigation';
 
@@ -108,9 +107,6 @@ export default function ServiceDetailPage() {
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-3xl font-bold mb-4">{service.title}</h1>
           <p className="text-gray-300 mb-8">{service.description}</p>
-
-          {/* 🚨 Uyarı Bileşeni */}
-          <Warning />
 
           <h2 className="text-xl font-semibold mb-4">Müşteri Yorumları</h2>
           <ul className="space-y-4">
