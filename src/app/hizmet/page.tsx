@@ -1,18 +1,18 @@
 'use client';
 
+import Head from 'next/head';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
 
 const services = {
   'Beyaz Eşya Servisi': {
     title: 'Beyaz Eşya Servisi',
     description:
-      'Beyaz eşyalarınızın tamiri, bakımı ve kurulumu için profesyonel servis.',
+      'Beyaz eşyaların tamiri, bakımı ve kurulumu için profesyonel servis.',
   },
   Buzdolabı: {
     title: 'Buzdolabı Tamiri',
     description:
-      'Soğutmayan, ses yapan veya su akıtan buzdolaplarınız için hızlı servis.',
+      'Soğutmayan, ses yapan veya su akıtan buzdolapları için hızlı servis.',
   },
   'Çamaşır Makinesi': {
     title: 'Çamaşır Makinesi Tamiri',
@@ -22,10 +22,10 @@ const services = {
   'Bulaşık Makinesi': {
     title: 'Bulaşık Makinesi Tamiri',
     description:
-      'Yıkama problemleri, deterjan almama gibi sorunlar için teknik destek.',
+      'Yıkama sorunları veya su sızdırma problemleri için teknik destek.',
   },
   Fırın: {
-    title: 'Fırın Tamiri',
+    title: 'Fırın & Ocak Tamiri',
     description:
       'Isıtma, pişirme ve elektronik arızalar için uzman fırın onarımı.',
   },
@@ -35,9 +35,8 @@ const services = {
       'Klima montajı, bakımı ve tamiri ile yaz sıcaklarında serin kalın.',
   },
   Kombi: {
-    title: 'Kombi Bakım & Onarım',
-    description:
-      'Kışa hazır olmak için periyodik bakım ve arıza giderme hizmetleri.',
+    title: 'Kombi Bakımı & Onarımı',
+    description: 'Kış hazırlıkları için kombi bakımı ve arıza giderme hizmeti.',
   },
   Televizyon: {
     title: 'Televizyon Tamiri',
@@ -45,48 +44,97 @@ const services = {
   },
 };
 
-export default function HizmetPage() {
+const fakeReviews = [
+  {
+    stars: 5,
+    text: 'Çok memnun kaldım, ekip çok hızlıydı. – Ayşe K.',
+  },
+  {
+    stars: 4,
+    text: 'Kombi bakımı titizlikle yapıldı. Tavsiye ederim. – Mehmet D.',
+  },
+  {
+    stars: 5,
+    text: 'Buzdolabı aynı gün tamir edildi, teşekkürler. – Emre S.',
+  },
+];
+
+export default function ServiceDetailPage() {
   const searchParams = useSearchParams();
-  const [service, setService] = useState<string | null>(null);
+  const serviceName = searchParams.get('service') || '';
+  const service = services[serviceName as keyof typeof services];
 
-  useEffect(() => {
-    const s = searchParams.get('service');
-    setService(s);
-  }, [searchParams]);
-
-  const serviceData = service
-    ? services[service as keyof typeof services]
+  const jsonLd = service
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'LocalBusiness',
+        name: `Eterna Teknik Servis - ${service.title}`,
+        description: service.description,
+        url: `https://example.com/hizmet?service=${encodeURIComponent(
+          serviceName
+        )}`,
+        telephone: '+908502324567',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'İstanbul, Türkiye',
+          addressLocality: 'İstanbul',
+          addressCountry: 'TR',
+        },
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: '4.7',
+          reviewCount: '3',
+        },
+        review: fakeReviews.map((r) => ({
+          '@type': 'Review',
+          reviewRating: {
+            '@type': 'Rating',
+            ratingValue: r.stars,
+            bestRating: 5,
+          },
+          reviewBody: r.text,
+        })),
+      }
     : null;
 
-  return (
-    <main className="bg-black text-white px-6 py-12 min-h-screen">
-      <div className="max-w-3xl mx-auto text-center">
-        {serviceData ? (
-          <>
-            <h1 className="text-3xl font-bold mb-4">{serviceData.title}</h1>
-            <p className="text-gray-300 mb-8">{serviceData.description}</p>
+  if (!service) {
+    return (
+      <main className="bg-black text-white p-8 text-center">
+        <h1 className="text-2xl font-bold mb-4">Hizmet Bulunamadı</h1>
+        <p>Lütfen geçerli bir hizmet adı girin.</p>
+      </main>
+    );
+  }
 
-            <h2 className="text-xl font-semibold mb-2">Müşteri Yorumları</h2>
-            <ul className="space-y-4 text-left text-sm text-gray-400">
-              <li>
-                ⭐️⭐️⭐️⭐️⭐️ Çok memnun kaldım, ekip çok hızlıydı. – Ayşe K.
+  return (
+    <>
+      {jsonLd && (
+        <Head>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
+        </Head>
+      )}
+      <main className="bg-black text-white px-6 py-12">
+        <div className="max-w-3xl mx-auto text-center">
+          <h1 className="text-3xl font-bold mb-4">{service.title}</h1>
+          <p className="text-gray-300 mb-8">{service.description}</p>
+
+          <h2 className="text-xl font-semibold mb-4">Müşteri Yorumları</h2>
+          <ul className="space-y-4">
+            {fakeReviews.map((review, index) => (
+              <li key={index} className="text-left">
+                <div className="text-yellow-400">
+                  {'★'.repeat(review.stars)}
+                  {'☆'.repeat(5 - review.stars)}
+                </div>
+                <p className="text-gray-300">{review.text}</p>
               </li>
-              <li>
-                ⭐️⭐️⭐️⭐️ Kombi bakımı titizlikle yapıldı. Tavsiye ederim. –
-                Mehmet D.
-              </li>
-              <li>
-                ⭐️⭐️⭐️⭐️⭐️ Buzdolabı aynı gün tamir edildi, teşekkürler. –
-                Emre S.
-              </li>
-            </ul>
-          </>
-        ) : (
-          <p className="text-gray-400">
-            Hizmet bulunamadı veya geçersiz parametre.
-          </p>
-        )}
-      </div>
-    </main>
+            ))}
+          </ul>
+        </div>
+      </main>
+    </>
   );
 }
