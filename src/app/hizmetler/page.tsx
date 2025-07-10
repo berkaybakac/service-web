@@ -1,5 +1,11 @@
 'use client';
+import type { Metadata } from 'next';
 import Link from 'next/link';
+export const metadata: Metadata = {
+  title: 'Hizmetlerimiz | Eterna Teknik Servis',
+  description:
+    'Beyaz eşya, buzdolabı, klima ve daha fazlası için sunduğumuz profesyonel teknik hizmetleri keşfedin.',
+};
 
 export default function ServicesPage() {
   const services = [
