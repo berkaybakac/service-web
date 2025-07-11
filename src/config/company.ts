@@ -1,4 +1,26 @@
-const company = {
+type Company = {
+  url: string;
+  name: string;
+  legalName: string;
+  slogan: string;
+  phone: string;
+  email: string;
+  address: {
+    street: string;
+    district: string;
+    city: string;
+    zip: string;
+  };
+  workingHours: {
+    weekdays: string;
+    saturday: string;
+    sunday: string;
+  };
+  copyright: string;
+};
+
+const company: Company = {
+  url: 'https://eternateknikservis.com',
   name: 'Eterna Teknik Servis',
   legalName: 'Eterna Teknoloji A.Ş.',
   slogan: 'Beyaz Eşya Teknik Servisinde Güvenin Adı',

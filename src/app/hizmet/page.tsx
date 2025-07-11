@@ -1,7 +1,18 @@
 'use client';
 
+import { fakeReviews } from '@/data/fakeReviews';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
+
+// Lazy-load markdown içeriği
+const LazyArticleContent = dynamic(
+  () => import('@/components/ArticleContent'),
+  {
+    ssr: false,
+  }
+);
 
 const services = {
   'Beyaz Eşya Servisi': {
@@ -44,8 +55,6 @@ const services = {
   },
 };
 
-import { fakeReviews } from '@/data/fakeReviews';
-
 export default function ServiceDetailPage() {
   const searchParams = useSearchParams();
   const serviceName = searchParams.get('service') || '';
@@ -57,7 +66,7 @@ export default function ServiceDetailPage() {
         '@type': 'LocalBusiness',
         name: `Eterna Teknik Servis - ${service.title}`,
         description: service.description,
-        url: `https://example.com/hizmet?service=${encodeURIComponent(
+        url: `https://eternateknikservis.com/hizmet?service=${encodeURIComponent(
           serviceName
         )}`,
         telephone: '+908502324567',
@@ -105,6 +114,10 @@ export default function ServiceDetailPage() {
       )}
       <main className="bg-black text-white px-6 py-12">
         <div className="max-w-3xl mx-auto text-center">
+          <Suspense fallback={<div>Makale içeriği yükleniyor...</div>}>
+            <LazyArticleContent />
+          </Suspense>
+
           <h1 className="text-3xl font-bold mb-4">{service.title}</h1>
           <p className="text-gray-300 mb-8">{service.description}</p>
 
