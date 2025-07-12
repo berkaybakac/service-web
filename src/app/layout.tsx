@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import Warning from '../components/Warning'; // ✅ Yeni eklendi
 import './globals.css';
 
 const geistSans = Geist({
@@ -96,8 +95,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white min-h-screen flex flex-col`}
       >
         <Header />
-        {/* ✅ Global uyarı buraya eklendi */}
-        <Warning />
         <main className="flex-grow">{children}</main>
         <Footer />
       </body>

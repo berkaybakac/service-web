@@ -7,6 +7,11 @@ export default function Footer() {
         <div>
           © {new Date().getFullYear()} Eterna Teknik Servis. Tüm hakları
           saklıdır.
+          <p className="text-gray-300 text-xs mt-2">
+            Bu web sitesi <strong>resmi yetkili servis</strong> değildir.
+            Yalnızca <strong>garantisi sona ermiş</strong> cihazlar için teknik
+            servis hizmeti sunmaktadır.
+          </p>
         </div>
         <div className="flex flex-wrap gap-4 justify-center sm:justify-end">
           <Link href="/" className="hover:underline">

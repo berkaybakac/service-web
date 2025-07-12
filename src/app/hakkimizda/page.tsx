@@ -89,6 +89,12 @@ export default function AboutPage() {
             <li>Müşteri Memnuniyeti Odaklı Yaklaşım</li>
           </ul>
         </section>
+
+        <p className="text-gray-400 text-sm mt-8">
+          Not: Bu web sitesi <strong>resmi yetkili servis</strong> değildir.
+          Sadece <strong>garantisi sona ermiş</strong> cihazlara teknik servis
+          sağlamaktadır.
+        </p>
       </div>
     </main>
   );
