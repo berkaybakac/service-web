@@ -20,7 +20,7 @@ type Company = {
 };
 
 const company: Company = {
-  url: 'https://eternateknikservis.com',
+  url: 'https://service-web-blush.vercel.app',
   name: 'Eterna Teknik Servis',
   legalName: 'Eterna Teknoloji A.Ş.',
   slogan: 'Beyaz Eşya Teknik Servisinde Güvenin Adı',

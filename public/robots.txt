@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://service-web-blush.vercel.app
+
+# Sitemaps
+Sitemap: https://service-web-blush.vercel.app/sitemap.xml

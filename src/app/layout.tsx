@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: company.name,
     images: [
       {
-        url: `${company.url}/opengraph-image.png`,
+        url: `${company.url}/service-web-og.webp`,
         width: 1200,
         height: 630,
         alt: company.name,
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: company.name,
     description: company.slogan,
-    images: [`${company.url}/opengraph-image.png`],
+    images: [`${company.url}/service-web-og.webp`],
   },
 };
 
@@ -86,6 +86,18 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <head>
+        <meta name="description" content={company.slogan} />
+        <meta property="og:image" content="/service-web-og.webp" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Eterna Teknik Servis" />
+        <meta
+          property="og:description"
+          content="Beyaz Eşya Teknik Servisinde Güvenin Adı"
+        />
+        <meta property="og:url" content="https://eternateknikservis.com" />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
