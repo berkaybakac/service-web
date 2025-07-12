@@ -32,7 +32,7 @@ export default function PrivacyPolicyPage() {
         </h1>
         <p className="text-gray-300 leading-relaxed mb-4">
           Bu Gizlilik Politikası, Eterna Teknik Servis web sitesi (bundan böyle
-          "Site" olarak anılacaktır) aracılığıyla topladığımız kişisel
+          Site olarak anılacaktır) aracılığıyla topladığımız kişisel
           verilerinizi nasıl kullandığımızı, koruduğumuzu ve ifşa ettiğimizi
           açıklamaktadır. Sitemizi kullanarak bu politikayı kabul etmiş
           olursunuz.
