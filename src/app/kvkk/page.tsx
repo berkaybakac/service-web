@@ -99,7 +99,7 @@ export default function KvkkPage() {
           İlgili Kişinin Hakları
         </h2>
         <p className="text-gray-300 leading-relaxed mb-4">
-          KVKK'nın 11. maddesi uyarınca, kişisel verilerinizle ilgili olarak
+          KVKK&#39;nın 11. maddesi uyarınca, kişisel verilerinizle ilgili olarak
           aşağıdaki haklara sahipsiniz:
         </p>
         <ul className="list-disc list-inside text-gray-300 leading-relaxed mb-4">
