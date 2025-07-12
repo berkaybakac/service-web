@@ -1,31 +1,94 @@
-export default function Hakkimizda() {
+// src/app/hakkimizda/page.tsx
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Hakkımızda - Eterna Teknik Servis',
+  description:
+    'Eterna Teknik Servis olarak uzun yıllardır sektörde hizmet veriyoruz. Misyonumuz, kaliteli ve güvenilir servis anlayışıyla müşteri memnuniyetini en üst düzeyde tutmaktır.',
+  openGraph: {
+    title: 'Hakkımızda - Eterna Teknik Servis',
+    description:
+      'Eterna Teknik Servis olarak uzun yıllardır sektörde hizmet veriyoruz. Misyonumuz, kaliteli ve güvenilir servis anlayışıyla müşteri memnuniyetini en üst düzeyde tutmaktır.',
+    url: 'https://eternateknikservis.com/hakkimizda', // Kendi domaininizi buraya yazın
+    siteName: 'Eterna Teknik Servis',
+    locale: 'tr_TR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary', // Görsel olmadığı için summary kart tipi daha uygun
+    title: 'Hakkımızda - Eterna Teknik Servis',
+    description:
+      'Eterna Teknik Servis olarak uzun yıllardır sektörde hizmet veriyoruz. Misyonumuz, kaliteli ve güvenilir servis anlayışıyla müşteri memnuniyetini en üst düzeyde tutmaktır.',
+  },
+};
+
+export default function AboutPage() {
   return (
-    <main className="bg-black text-white px-6 py-12">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl md:text-4xl font-bold mb-6">Hakkımızda</h1>
-        <p className="text-gray-300 mb-4">
-          Eterna Teknik Servis, beyaz eşya alanında uzmanlaşmış, güvenilir ve
-          deneyimli bir servis sağlayıcısıdır. Misyonumuz, müşterilerimize
-          hızlı, etkili ve ekonomik çözümler sunarak günlük yaşamlarındaki
-          konforu kesintisiz hale getirmektir.
-        </p>
-        <p className="text-gray-300 mb-4">
-          Sektördeki 10 yılı aşkın tecrübemizle, farklı marka ve modeldeki
-          cihazlara bakım, onarım ve montaj hizmetleri vermekteyiz. İstanbul
-          merkezli yapımızla birlikte, müşteri memnuniyetini temel ilke olarak
-          benimseyen bir anlayışla çalışıyoruz.
-        </p>
-        <p className="text-gray-300 mb-4">
-          Ekip olarak teknolojiye hâkimiyetimiz, çağın ihtiyaçlarını
-          karşılayabilen altyapımız ve eğitimli teknisyen kadromuzla birlikte
-          hizmet vermekteyiz. Her servis talebinde şeffaf fiyatlandırma,
-          orijinal yedek parça kullanımı ve zamanında çözüm ilkelerimizle fark
-          yaratmayı sürdürüyoruz.
-        </p>
-        <p className="text-gray-300">
-          Bizimle iletişime geçerek güvenli, garantili ve profesyonel teknik
-          destek alabilirsiniz.
-        </p>
+    <main className="min-h-screen bg-black text-white p-6">
+      <div className="max-w-4xl mx-auto py-12">
+        {/* Başlık rengi beyaza çevrildi */}
+        <h1 className="text-4xl font-bold mb-6 text-center text-white">
+          Hakkımızda
+        </h1>
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4 text-gray-200">
+            Eterna Teknik Servis Kimdir?
+          </h2>
+          <p className="text-gray-300 leading-relaxed mb-4">
+            Eterna Teknik Servis olarak, uzun yıllardır sektördeki tecrübemizle
+            beyaz eşya, kombi, klima ve televizyon gibi ev aletlerinin bakım,
+            onarım ve montaj hizmetlerini sunmaktayız. Müşteri memnuniyetini her
+            zaman ön planda tutarak, hızlı, güvenilir ve kaliteli çözümler
+            sunmayı hedefliyoruz.
+          </p>
+          <p className="text-gray-300 leading-relaxed">
+            Alanında uzman ve deneyimli teknik ekibimizle, cihazlarınızdaki
+            sorunları en kısa sürede tespit edip, kalıcı çözümler üretiyoruz.
+            Kullandığımız orijinal yedek parçalar ve modern ekipmanlar
+            sayesinde, tamir ettiğimiz cihazların ömrünü uzatıyor ve maksimum
+            verimlilikle çalışmalarını sağlıyoruz.
+          </p>
+        </section>
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4 text-gray-200">
+            Misyonumuz
+          </h2>
+          <p className="text-gray-300 leading-relaxed">
+            Misyonumuz, sektördeki gelişmeleri yakından takip ederek,
+            teknolojinin sunduğu en iyi imkanlarla müşterilerimize kesintisiz ve
+            yüksek standartlarda hizmet sunmaktır. Her bir müşterimizin özel
+            ihtiyaçlarına duyarlılıkla yaklaşarak, sorunlarına hızlı ve etkili
+            çözümler getirmek, şirketimizin temel prensibidir. Çevreye duyarlı
+            bir yaklaşımla, sürdürülebilir ve enerji verimli çözümler sunmayı da
+            amaçlıyoruz.
+          </p>
+        </section>
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4 text-gray-200">
+            Vizyonumuz
+          </h2>
+          <p className="text-gray-300 leading-relaxed">
+            Vizyonumuz, teknik servis sektöründe lider bir marka olmak,
+            yenilikçi yaklaşımlarımızla standartları belirlemek ve müşteri
+            tabanımızı sürekli genişleterek sektördeki öncü konumumuzu
+            pekiştirmektir. Uzun vadeli müşteri ilişkileri kurarak, sadece arıza
+            anında değil, düzenli bakım ve danışmanlık hizmetleriyle de
+            müşterilerimizin yanında olmayı hedefliyoruz.
+          </p>
+        </section>
+        <section>
+          <h2 className="text-2xl font-semibold mb-4 text-gray-200">
+            Neden Eterna Teknik Servis?
+          </h2>
+          <ul className="list-disc list-inside text-gray-300 leading-relaxed">
+            <li className="mb-2">Deneyimli ve Uzman Kadro</li>
+            <li className="mb-2">Hızlı ve Güvenilir Hizmet</li>
+            <li className="mb-2">Orijinal Yedek Parça Garantisi</li>
+            <li className="mb-2">Uygun Fiyat Garantisi</li>
+            <li className="mb-2">Geniş Hizmet Ağı</li>
+            <li>Müşteri Memnuniyeti Odaklı Yaklaşım</li>
+          </ul>
+        </section>
       </div>
     </main>
   );
