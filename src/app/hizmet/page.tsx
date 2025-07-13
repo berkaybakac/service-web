@@ -1,10 +1,10 @@
 'use client';
 
-import { fakeReviews } from '@/data/fakeReviews';
-import dynamic from 'next/dynamic';
-// import Head from 'next/head'; // Next.js App Router'da next/head yerine Metadata veya direkt script tagleri kullanılır
 import Breadcrumb from '@/components/Breadcrumb';
-import company from '@/config/company'; // company bilgilerini import et
+import company from '@/config/company';
+import { fakeReviews } from '@/data/fakeReviews';
+import qaList from '@/data/qaList'; // ← QAPage için import
+import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 
@@ -61,14 +61,12 @@ export default function ServiceDetailPage() {
   const searchParams = useSearchParams();
   const serviceNameParam = searchParams.get('service');
 
-  // URL'deki service parametresini temizle ve başlık için kullan
   const displayServiceName = serviceNameParam
-    ? decodeURIComponent(serviceNameParam.replace(/\+/g, ' ')) // URL'deki + işaretlerini boşluk yap
+    ? decodeURIComponent(serviceNameParam.replace(/\+/g, ' '))
     : '';
 
   const service = services[displayServiceName as keyof typeof services];
 
-  // H1 başlığı ve açıklama için dinamik değerler
   const pageTitle = service
     ? service.title
     : displayServiceName
@@ -77,9 +75,8 @@ export default function ServiceDetailPage() {
 
   const pageDescription = service
     ? service.description
-    : 'Profesyonel teknik servis hizmetlerimizle tanışın.'; // Varsayılan açıklama
+    : 'Profesyonel teknik servis hizmetlerimizle tanışın.';
 
-  // JSON-LD schema
   const jsonLd = service
     ? {
         '@context': 'https://schema.org',
@@ -112,7 +109,6 @@ export default function ServiceDetailPage() {
         })),
       }
     : {
-        // Eğer belirli bir hizmet bulunamazsa, genel şirket bilgilerini kullan
         '@context': 'https://schema.org',
         '@type': 'LocalBusiness',
         name: company.name,
@@ -143,7 +139,6 @@ export default function ServiceDetailPage() {
           },
         ],
         aggregateRating: {
-          // Genel sayfa için de yorumları gösterebiliriz
           '@type': 'AggregateRating',
           ratingValue: '4.7',
           reviewCount: fakeReviews.length.toString(),
@@ -161,7 +156,6 @@ export default function ServiceDetailPage() {
 
   return (
     <>
-      {/* Head import'unu kaldırdığımız için script tag'ini doğrudan render ediyoruz */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -199,16 +193,34 @@ export default function ServiceDetailPage() {
         }}
       />
 
+      {qaList[displayServiceName] && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'QAPage',
+              mainEntity: {
+                '@type': 'Question',
+                name: qaList[displayServiceName].question,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: qaList[displayServiceName].answer,
+                },
+              },
+            }),
+          }}
+        />
+      )}
+
       <main className="bg-black text-white px-6 py-12">
         <Breadcrumb />
 
         <div className="max-w-3xl mx-auto text-center">
-          {/* Makale içeriği her zaman gösterilecek */}
           <Suspense fallback={<div>Makale içeriği yükleniyor...</div>}>
             <LazyArticleContent />
           </Suspense>
 
-          {/* Dinamik başlık ve açıklama */}
           <h1 className="text-3xl font-bold mb-4">{pageTitle}</h1>
           <p className="text-gray-300 mb-8">{pageDescription}</p>
 
