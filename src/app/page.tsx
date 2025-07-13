@@ -6,11 +6,11 @@ export default function Home() {
   return (
     <main className="bg-black text-white">
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col justify-center items-center text-center px-6">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">
+      <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-24">
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 max-w-xl">
           Eterna Teknik Servis
         </h1>
-        <p className="text-lg md:text-xl max-w-2xl">
+        <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-xl">
           Beyaz eşyalarınız için güvenilir, hızlı ve profesyonel teknik servis
           hizmeti.
         </p>
@@ -28,23 +28,62 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Hakkımızda */}
-      <section className="px-6 py-12 max-w-4xl mx-auto">
-        <h2 className="text-2xl font-semibold mb-4">Hakkımızda</h2>
-        <p className="text-gray-300">
-          Eterna Teknoloji A.Ş., beyaz eşya teknik servis alanında yılların
-          deneyimiyle hizmet vermektedir. Eğitimli teknisyen kadrosu, yedek
-          parça garantisi ve müşteri memnuniyeti odaklı yaklaşımıyla öne çıkar.
-        </p>
+      {/* Neden Bizi Tercih Etmelisiniz */}
+      <section className="bg-black text-white px-6 py-16">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-3xl font-semibold mb-12">
+            Neden Bizi Tercih Etmelisiniz?
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-left">
+            {[
+              {
+                icon: '📞',
+                title: '7/24 Hizmet',
+                desc: 'Günün her saati kesintisiz teknik servis desteği.',
+              },
+              {
+                icon: '🛡️',
+                title: '1 Yıl Garanti',
+                desc: 'Tüm servis işlemlerimizde 1 yıl garanti sunuyoruz.',
+              },
+              {
+                icon: '⚡',
+                title: 'Hızlı Müdahale',
+                desc: '20 dakika içinde geri dönüş ve randevu imkanı.',
+              },
+              {
+                icon: '😊',
+                title: '%100 Memnuniyet',
+                desc: 'Müşteri odaklı yaklaşım ve güler yüzlü hizmet.',
+              },
+              {
+                icon: '💸',
+                title: 'En Uygun Fiyat',
+                desc: 'Kaliteli hizmeti en ekonomik fiyatlarla sunarız.',
+              },
+              {
+                icon: '✅',
+                title: '%100 Güvenilir',
+                desc: 'Belgeli, eğitimli ve uzman teknik kadro.',
+              },
+            ].map(({ icon, title, desc }) => (
+              <div key={title} className="flex items-start gap-4">
+                <div className="text-3xl">{icon}</div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-1">{title}</h3>
+                  <p className="text-gray-400 text-sm">{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* Hizmetler */}
-      <section className="bg-gray-950 px-6 py-12">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl font-semibold mb-8 text-center">
-            Hizmetlerimiz
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
+      <section className="bg-[#0d111a] px-6 py-16 text-white">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-3xl font-semibold mb-8">Hizmetlerimiz</h2>
+          <div className="grid md:grid-cols-3 gap-6 text-left">
             {[
               {
                 title: 'Buzdolabı Tamiri',
@@ -68,11 +107,18 @@ export default function Home() {
               </div>
             ))}
           </div>
+
+          <a
+            href="/hizmetler"
+            className="inline-block mt-10 text-sm text-gray-300 hover:text-white border border-gray-600 px-5 py-2 rounded transition"
+          >
+            Tüm Hizmetleri Gör →
+          </a>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="px-6 py-12 text-center">
+      <section className="bg-[#0d111a] px-6 py-16 text-center text-white">
         <h2 className="text-2xl font-semibold mb-4">
           Servis Talebi Oluşturmak Çok Kolay
         </h2>
