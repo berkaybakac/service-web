@@ -25,8 +25,8 @@ export default function Breadcrumb() {
   if (breadcrumbs.length <= 1) return null;
 
   return (
-    <nav className="text-sm text-gray-400 mb-8" aria-label="breadcrumb">
-      <ol className="flex flex-wrap items-center space-x-2">
+    <nav className="mb-6">
+      <ol className="flex max-w-3xl mx-auto text-gray-400 text-sm sm:text-base px-4 sm:px-0">
         {breadcrumbs.map((crumb, index) => (
           <li key={crumb.href} className="flex items-center">
             <Link
@@ -36,7 +36,7 @@ export default function Breadcrumb() {
               {crumb.name.charAt(0).toUpperCase() + crumb.name.slice(1)}
             </Link>
             {index < breadcrumbs.length - 1 && (
-              <span className="mx-1 text-gray-500">›</span>
+              <span className="mx-2 text-gray-500">›</span>
             )}
           </li>
         ))}
