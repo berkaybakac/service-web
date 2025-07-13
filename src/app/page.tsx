@@ -71,7 +71,7 @@ export default function Home() {
         </p>
         <a
           href="https://wa.me/908502324567"
-          className="inline-block bg-green-500 text-white py-2 px-6 rounded hover:bg-green-600 transition"
+          className="inline-block bg-green-600 text-white py-2 px-6 rounded hover:bg-green-700"
           target="_blank"
           rel="noopener noreferrer"
         >
