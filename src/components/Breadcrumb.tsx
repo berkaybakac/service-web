@@ -14,26 +14,33 @@ export default function Breadcrumb() {
     if (!pathname) return;
 
     const pathParts = pathname.split('/').filter(Boolean);
-    const pathArray = pathParts.map((part, index) => {
-      return {
-        name: decodeURIComponent(part),
-        href: '/' + pathParts.slice(0, index + 1).join('/'),
-      };
-    });
+    const pathArray = pathParts.map((part, index) => ({
+      name: decodeURIComponent(part),
+      href: '/' + pathParts.slice(0, index + 1).join('/'),
+    }));
 
     setBreadcrumbs([{ name: 'Ana Sayfa', href: '/' }, ...pathArray]);
   }, [pathname]);
 
+  if (breadcrumbs.length <= 1) return null;
+
   return (
-    <nav className="text-sm text-gray-600 mb-4" aria-label="breadcrumb">
-      {breadcrumbs.map((crumb, index) => (
-        <span key={crumb.href}>
-          <Link href={crumb.href} className="text-blue-600 hover:underline">
-            {crumb.name.charAt(0).toUpperCase() + crumb.name.slice(1)}
-          </Link>
-          {index < breadcrumbs.length - 1 && <span className="mx-2">/</span>}
-        </span>
-      ))}
+    <nav className="text-sm text-gray-400 mb-8" aria-label="breadcrumb">
+      <ol className="flex flex-wrap items-center space-x-2">
+        {breadcrumbs.map((crumb, index) => (
+          <li key={crumb.href} className="flex items-center">
+            <Link
+              href={crumb.href}
+              className="hover:text-white transition-colors duration-150"
+            >
+              {crumb.name.charAt(0).toUpperCase() + crumb.name.slice(1)}
+            </Link>
+            {index < breadcrumbs.length - 1 && (
+              <span className="mx-1 text-gray-500">›</span>
+            )}
+          </li>
+        ))}
+      </ol>
     </nav>
   );
 }
