@@ -1,54 +1,67 @@
 export const fakeReviews = [
   {
     stars: 5,
-    text: 'İlk defa bu kadar hızlı ve düzgün bir servis aldım. Geldikleri gibi sorunu çözdüler. – Ayşe K.',
+    author: 'Ayşe K.',
+    text: 'İlk defa bu kadar hızlı ve düzgün bir servis aldım. Geldikleri gibi sorunu çözdüler.',
   },
   {
     stars: 4,
-    text: 'Kombi bakımı zamanında yapıldı. Teknisyen oldukça kibar ve açıklayıcıydı. Tavsiye ederim. – Mehmet D.',
+    author: 'Mehmet D.',
+    text: 'Kombi bakımı zamanında yapıldı. Teknisyen oldukça kibar ve açıklayıcıydı. Tavsiye ederim.',
   },
   {
     stars: 5,
-    text: 'Buzdolabımız çalışmıyordu, ertesi gün gelip tamir ettiler. Artık çok sessiz çalışıyor. – Emre S.',
+    author: 'Emre S.',
+    text: 'Buzdolabımız çalışmıyordu, ertesi gün gelip tamir ettiler. Artık çok sessiz çalışıyor.',
   },
   {
     stars: 3,
-    text: 'Servis biraz geç geldi ama işi düzgün yaptı. Fiyatlar makul. – Derya U.',
+    author: 'Derya U.',
+    text: 'Servis biraz geç geldi ama işi düzgün yaptı. Fiyatlar makul.',
   },
   {
     stars: 5,
-    text: 'Fırın tamiri için başvurduk, parça değişimi gerekti ama her aşamada bilgilendirildik. Memnun kaldık. – Zeynep T.',
+    author: 'Zeynep T.',
+    text: 'Fırın tamiri için başvurduk, parça değişimi gerekti ama her aşamada bilgilendirildik. Memnun kaldık.',
   },
   {
     stars: 4,
-    text: 'Çamaşır makinemiz artık ses yapmıyor, detaylı bakım yapıldı. – Burak A.',
+    author: 'Burak A.',
+    text: 'Çamaşır makinemiz artık ses yapmıyor, detaylı bakım yapıldı.',
   },
   {
     stars: 5,
-    text: 'Telefonla ulaşmak kolaydı, hızlıca randevu verip aynı gün geldiler. – Seda Y.',
+    author: 'Seda Y.',
+    text: 'Telefonla ulaşmak kolaydı, hızlıca randevu verip aynı gün geldiler.',
   },
   {
     stars: 5,
-    text: 'İletişimden montaja kadar tüm süreç çok profesyoneldi. Klimamız yeniden çalışıyor, teşekkürler. – Onur B.',
+    author: 'Onur B.',
+    text: 'İletişimden montaja kadar tüm süreç çok profesyoneldi. Klimamız yeniden çalışıyor, teşekkürler.',
   },
   {
     stars: 4,
-    text: 'Televizyon ekranında çizgi çıkıyordu, kısa sürede tamir ettiler. Garanti dışı olmasına rağmen uygun fiyatlıydı. – Nazlı E.',
+    author: 'Nazlı E.',
+    text: 'Televizyon ekranında çizgi çıkıyordu, kısa sürede tamir ettiler. Garanti dışı olmasına rağmen uygun fiyatlıydı.',
   },
   {
     stars: 5,
-    text: 'Çok iyi bir hizmetti. Hem müşteri ilişkileri hem de teknik bilgi anlamında memnun kaldık. – Gökhan R.',
+    author: 'Gökhan R.',
+    text: 'Çok iyi bir hizmetti. Hem müşteri ilişkileri hem de teknik bilgi anlamında memnun kaldık.',
   },
   {
     stars: 5,
-    text: 'Daha önce başka bir firmayla sorun yaşamıştık ama Eterna çok güven verdi. – Elif Ç.',
+    author: 'Elif Ç.',
+    text: 'Daha önce başka bir firmayla sorun yaşamıştık ama Eterna çok güven verdi.',
   },
   {
     stars: 4,
-    text: 'Montaj sonrasında küçük bir problem oldu, arayınca hemen gelip düzelttiler. İlgi alaka güzel. – Kemal T.',
+    author: 'Kemal T.',
+    text: 'Montaj sonrasında küçük bir problem oldu, arayınca hemen gelip düzelttiler. İlgi alaka güzel.',
   },
   {
     stars: 5,
-    text: 'Hem profesyonel hem de güler yüzlülerdi. İkinci kez çalıştım, yine memnunum. – Yasemin K.',
+    author: 'Yasemin K.',
+    text: 'Hem profesyonel hem de güler yüzlülerdi. İkinci kez çalıştım, yine memnunum.',
   },
 ];

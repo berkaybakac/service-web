@@ -100,6 +100,10 @@ export default function ServiceDetailPage() {
         },
         review: fakeReviews.map((r) => ({
           '@type': 'Review',
+          author: {
+            '@type': 'Person',
+            name: r.author,
+          },
           reviewRating: {
             '@type': 'Rating',
             ratingValue: r.stars,
@@ -203,9 +207,21 @@ export default function ServiceDetailPage() {
               mainEntity: {
                 '@type': 'Question',
                 name: qaList[displayServiceName].question,
+                text: qaList[displayServiceName].question,
+                answerCount: 1,
+                dateCreated: qaList[displayServiceName].date,
+                author: {
+                  '@type': 'Person',
+                  name: qaList[displayServiceName].author,
+                },
                 acceptedAnswer: {
                   '@type': 'Answer',
                   text: qaList[displayServiceName].answer,
+                  datePublished: qaList[displayServiceName].date,
+                  author: {
+                    '@type': 'Person',
+                    name: qaList[displayServiceName].author,
+                  },
                 },
               },
             }),
