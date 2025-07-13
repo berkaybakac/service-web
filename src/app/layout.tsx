@@ -97,7 +97,6 @@ export default function RootLayout({
           content="Beyaz Eşya Teknik Servisinde Güvenin Adı"
         />
         <meta property="og:url" content="https://eternateknikservis.com" />
-
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

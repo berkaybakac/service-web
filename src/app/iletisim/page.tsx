@@ -85,10 +85,6 @@ export default function ContactPage() {
           En kısa sürede size geri dönüş yapacağız.
         </p>
 
-        <p className="text-gray-400 text-center mt-8">
-          En kısa sürede size geri dönüş yapacağız.
-        </p>
-
         <p className="text-gray-500 text-xs text-center mt-4">
           Bilgilendirme: Bu web sitesi <strong>resmi yetkili servis</strong>{' '}
           değildir. Teknik destek yalnızca <strong>garantisi sona ermiş</strong>{' '}
