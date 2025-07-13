@@ -5,35 +5,35 @@ export default function ServicesPage() {
   const services = [
     {
       title: 'Beyaz Eşya Servisi',
-      desc: 'Tüm cihazlarda genel bakım ve teknik servis hizmeti.',
+      desc: 'Tüm beyaz eşyalarınız için genel bakım ve hızlı teknik müdahale.',
     },
     {
       title: 'Buzdolabı',
-      desc: 'Soğutma sorunları ve termostat arızaları için servis.',
+      desc: 'Soğutmayan veya ses yapan buzdolapları için yerinde teknik destek.',
     },
     {
       title: 'Çamaşır Makinesi',
-      desc: 'Sıkma, su alma ve titreşim gibi arızalara çözüm.',
+      desc: 'Su almayan, sıkmayan veya sallanan makineler için profesyonel çözüm.',
     },
     {
       title: 'Bulaşık Makinesi',
-      desc: 'Yıkama problemleri ve su boşaltma sorunları için destek.',
+      desc: 'Yıkama, su boşaltma ve deterjan alma sorunları için teknik destek.',
     },
     {
       title: 'Fırın',
-      desc: 'Isınmama ve sıcaklık dengesizlikleri için servis.',
+      desc: 'Isınmayan, dengesiz pişiren veya koku yapan fırınlar için onarım.',
     },
     {
       title: 'Klima',
-      desc: 'Klima bakımı, gaz dolumu ve tamir hizmeti.',
+      desc: 'Soğutmayan, su damlatan veya sesli çalışan klimalar için servis.',
     },
     {
       title: 'Kombi',
-      desc: 'Kışa hazırlık için kombi bakım ve onarım hizmetleri.',
+      desc: 'Sıcak su vermeyen, ses yapan veya devreye girmeyen kombiler için bakım.',
     },
     {
       title: 'Televizyon',
-      desc: 'Görüntü, ses ve bağlantı sorunlarında teknik destek.',
+      desc: 'Görüntü gitmesi, ses problemi veya bağlantı sorunları için destek.',
     },
   ];
 
