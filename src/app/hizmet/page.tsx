@@ -3,6 +3,7 @@
 import { fakeReviews } from '@/data/fakeReviews';
 import dynamic from 'next/dynamic';
 // import Head from 'next/head'; // Next.js App Router'da next/head yerine Metadata veya direkt script tagleri kullanılır
+import Breadcrumb from '@/components/Breadcrumb';
 import company from '@/config/company'; // company bilgilerini import et
 import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
@@ -166,7 +167,41 @@ export default function ServiceDetailPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Ana Sayfa',
+                item: `${company.url}/`,
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Hizmetler',
+                item: `${company.url}/hizmet`,
+              },
+              {
+                '@type': 'ListItem',
+                position: 3,
+                name: pageTitle,
+                item: `${company.url}/hizmet?service=${encodeURIComponent(
+                  displayServiceName
+                )}`,
+              },
+            ],
+          }),
+        }}
+      />
+
       <main className="bg-black text-white px-6 py-12">
+        <Breadcrumb />
+
         <div className="max-w-3xl mx-auto text-center">
           {/* Makale içeriği her zaman gösterilecek */}
           <Suspense fallback={<div>Makale içeriği yükleniyor...</div>}>
