@@ -1,3 +1,7 @@
+'use client';
+
+import { PhoneIcon } from '@heroicons/react/24/solid';
+
 export default function Home() {
   return (
     <main className="bg-black text-white">
@@ -10,12 +14,18 @@ export default function Home() {
           Beyaz eşyalarınız için güvenilir, hızlı ve profesyonel teknik servis
           hizmeti.
         </p>
+
         <a
           href="tel:+908502324567"
-          className="mt-6 inline-block bg-white text-black font-semibold py-2 px-6 rounded hover:bg-gray-300 transition"
+          className="mt-6 inline-flex items-center gap-4 px-8 py-4 rounded-full bg-gradient-to-r from-slate-900 via-neutral-300 to-slate-900 text-white text-lg font-semibold tracking-wide shadow-lg hover:shadow-xl transition-transform duration-300 hover:scale-105 text-shadow"
         >
+          <PhoneIcon className="w-6 h-6 text-white" />
           Hemen Servis Çağır
         </a>
+
+        <p className="mt-5 text-gray-400 text-sm md:text-base max-w-md mx-auto">
+          En hızlı şekilde teknik destek almak için hemen arayın.
+        </p>
       </section>
 
       {/* Hakkımızda */}
