@@ -3,12 +3,11 @@
 import Breadcrumb from '@/components/Breadcrumb';
 import company from '@/config/company';
 import { fakeReviews } from '@/data/fakeReviews';
-import qaList from '@/data/qaList'; // ← QAPage için import
+import qaList from '@/data/qaList';
 import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 
-// Lazy-load markdown içeriği
 const LazyArticleContent = dynamic(
   () => import('@/components/ArticleContent'),
   {
@@ -69,94 +68,46 @@ export default function ServiceDetailPage() {
 
   const pageTitle = service
     ? service.title
-    : displayServiceName
-    ? `${displayServiceName} Servisi`
-    : 'Genel Teknik Servis Hizmetleri';
+    : displayServiceName || 'Genel Teknik Servis Hizmetleri';
 
   const pageDescription = service
     ? service.description
     : 'Profesyonel teknik servis hizmetlerimizle tanışın.';
 
-  const jsonLd = service
-    ? {
-        '@context': 'https://schema.org',
-        '@type': 'LocalBusiness',
-        name: `Eterna Teknik Servis - ${service.title}`,
-        description: service.description,
-        url: `${company.url}/hizmet?service=${encodeURIComponent(
-          displayServiceName
-        )}`,
-        telephone: company.phone,
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: company.address.street,
-          addressLocality: company.address.city,
-          addressCountry: 'TR',
-        },
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: '4.7',
-          reviewCount: '3',
-        },
-        review: fakeReviews.map((r) => ({
-          '@type': 'Review',
-          author: {
-            '@type': 'Person',
-            name: r.author,
-          },
-          reviewRating: {
-            '@type': 'Rating',
-            ratingValue: r.stars,
-            bestRating: 5,
-          },
-          reviewBody: r.text,
-        })),
-      }
-    : {
-        '@context': 'https://schema.org',
-        '@type': 'LocalBusiness',
-        name: company.name,
-        legalName: company.legalName,
-        description: company.slogan,
-        telephone: company.phone,
-        email: company.email,
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: company.address.street,
-          addressLocality: company.address.district,
-          addressRegion: company.address.city,
-          postalCode: company.address.zip,
-          addressCountry: 'TR',
-        },
-        openingHoursSpecification: [
-          {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-            opens: '08:00',
-            closes: '19:00',
-          },
-          {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: 'Saturday',
-            opens: '08:00',
-            closes: '17:00',
-          },
-        ],
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: '4.7',
-          reviewCount: fakeReviews.length.toString(),
-        },
-        review: fakeReviews.map((r) => ({
-          '@type': 'Review',
-          reviewRating: {
-            '@type': 'Rating',
-            ratingValue: r.stars,
-            bestRating: 5,
-          },
-          reviewBody: r.text,
-        })),
-      };
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: service ? `Eterna Teknik Servis - ${service.title}` : company.name,
+    description: service ? service.description : company.slogan,
+    url: `${company.url}/hizmet?service=${encodeURIComponent(
+      displayServiceName
+    )}`,
+    telephone: company.phone,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: company.address.street,
+      addressLocality: company.address.city,
+      addressCountry: 'TR',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.7',
+      reviewCount: fakeReviews.length.toString(),
+    },
+    review: fakeReviews.map((r) => ({
+      '@type': 'Review',
+      author: {
+        '@type': 'Person',
+        name: r.author,
+      },
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: r.stars,
+        bestRating: 5,
+      },
+      reviewBody: r.text,
+    })),
+  };
 
   return (
     <>
@@ -231,7 +182,6 @@ export default function ServiceDetailPage() {
 
       <main className="bg-black text-white px-6 py-12">
         <Breadcrumb />
-
         <div className="max-w-3xl mx-auto text-center">
           <Suspense fallback={<div>Makale içeriği yükleniyor...</div>}>
             <LazyArticleContent />
