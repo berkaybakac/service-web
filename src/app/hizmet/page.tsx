@@ -1,11 +1,17 @@
+'use client';
+
 import Breadcrumb from '@/components/Breadcrumb';
+import company from '@/config/company';
 import { fakeReviews } from '@/data/fakeReviews';
-import fs from 'fs';
-import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import path from 'path';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import qaList from '@/data/qaList';
+import dynamic from 'next/dynamic';
+import { useSearchParams } from 'next/navigation';
+import { Suspense, useState } from 'react';
+
+const LazyArticleContent = dynamic(
+  () => import('@/components/ArticleContent'),
+  { ssr: false }
+);
 
 const services = {
   'Beyaz Eşya Servisi': {
@@ -48,18 +54,13 @@ const services = {
   },
 };
 
-export const metadata: Metadata = {
-  title: 'Hizmet',
-  description: 'Servis detayları ve müşteri yorumları',
-};
+export default function ServiceDetailPage() {
+  const searchParams = useSearchParams();
+  const serviceNameParam = searchParams.get('service');
+  const [showArticle, setShowArticle] = useState(false);
 
-export default function ServiceDetailPage({
-  searchParams,
-}: {
-  searchParams: { service?: string };
-}) {
-  const displayServiceName = searchParams.service
-    ? decodeURIComponent(searchParams.service.replace(/\+/g, ' '))
+  const displayServiceName = serviceNameParam
+    ? decodeURIComponent(serviceNameParam.replace(/\+/g, ' '))
     : '';
 
   const service = services[displayServiceName as keyof typeof services];
@@ -72,40 +73,146 @@ export default function ServiceDetailPage({
     ? service.description
     : 'Profesyonel teknik servis hizmetlerimizle tanışın.';
 
-  const articlePath = path.join(process.cwd(), 'public/article.md');
-  const articleContent = fs.readFileSync(articlePath, 'utf8');
-
-  if (!service) return notFound();
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: service ? `Eterna Teknik Servis - ${service.title}` : company.name,
+    description: service ? service.description : company.slogan,
+    url: `${company.url}/hizmet?service=${encodeURIComponent(
+      displayServiceName
+    )}`,
+    telephone: company.phone,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: company.address.street,
+      addressLocality: company.address.city,
+      addressCountry: 'TR',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.7',
+      reviewCount: fakeReviews.length.toString(),
+    },
+    review: fakeReviews.map((r) => ({
+      '@type': 'Review',
+      author: { '@type': 'Person', name: r.author },
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: r.stars,
+        bestRating: 5,
+      },
+      reviewBody: r.text,
+    })),
+  };
 
   return (
-    <main className="bg-black text-white px-6 py-12">
-      <Breadcrumb />
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold mb-4 text-center">{pageTitle}</h1>
-        <p className="text-gray-300 mb-6 text-center">{pageDescription}</p>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Ana Sayfa',
+                item: `${company.url}/`,
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Hizmetler',
+                item: `${company.url}/hizmetler`,
+              },
+              {
+                '@type': 'ListItem',
+                position: 3,
+                name: pageTitle,
+                item: `${company.url}/hizmet?service=${encodeURIComponent(
+                  displayServiceName
+                )}`,
+              },
+            ],
+          }),
+        }}
+      />
+      {qaList[displayServiceName] && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'QAPage',
+              mainEntity: {
+                '@type': 'Question',
+                name: qaList[displayServiceName].question,
+                text: qaList[displayServiceName].question,
+                answerCount: 1,
+                dateCreated: qaList[displayServiceName].date,
+                author: {
+                  '@type': 'Person',
+                  name: qaList[displayServiceName].author,
+                },
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: qaList[displayServiceName].answer,
+                  datePublished: qaList[displayServiceName].date,
+                  author: {
+                    '@type': 'Person',
+                    name: qaList[displayServiceName].author,
+                  },
+                },
+              },
+            }),
+          }}
+        />
+      )}
 
-        <div className="bg-[#12141c] p-4 rounded mb-6 transition-all duration-300">
-          <ReactMarkdown
-            className="prose prose-invert max-w-none"
-            remarkPlugins={[remarkGfm]}
-          >
-            {articleContent}
-          </ReactMarkdown>
+      <main className="bg-black text-white px-6 py-12">
+        <Breadcrumb />
+        <div className="max-w-3xl mx-auto">
+          <h1 className="text-3xl font-bold mb-4 text-center">{pageTitle}</h1>
+          <p className="text-gray-300 mb-6 text-center">{pageDescription}</p>
+
+          {showArticle && (
+            <div className="bg-[#12141c] p-4 rounded mb-6 transition-all duration-300">
+              <Suspense fallback={<div>Makale içeriği yükleniyor...</div>}>
+                <LazyArticleContent />
+              </Suspense>
+            </div>
+          )}
+
+          <div className="text-center mb-8">
+            <button
+              className="inline-block border border-gray-600 px-5 py-2 text-sm rounded hover:bg-gray-800 transition"
+              onClick={() => setShowArticle((prev) => !prev)}
+            >
+              {showArticle
+                ? 'Servis Detaylarını Gizle ▲'
+                : 'Servis Detaylarını Göster ▼'}
+            </button>
+          </div>
+
+          <h2 className="text-xl font-semibold mb-4">Müşteri Yorumları</h2>
+          <ul className="space-y-6 text-left">
+            {fakeReviews.map((review, index) => (
+              <li key={index}>
+                <div className="text-yellow-400 leading-none text-lg">
+                  {'★'.repeat(review.stars)}
+                  {'☆'.repeat(5 - review.stars)}
+                </div>
+                <p className="text-gray-300">{review.text}</p>
+              </li>
+            ))}
+          </ul>
         </div>
-
-        <h2 className="text-xl font-semibold mb-4">Müşteri Yorumları</h2>
-        <ul className="space-y-6 text-left">
-          {fakeReviews.map((review, index) => (
-            <li key={index}>
-              <div className="text-yellow-400 leading-none text-lg">
-                {'★'.repeat(review.stars)}
-                {'☆'.repeat(5 - review.stars)}
-              </div>
-              <p className="text-gray-300">{review.text}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </main>
+      </main>
+    </>
   );
 }
