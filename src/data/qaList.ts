@@ -1,3 +1,5 @@
+import company from '@/config/company';
+
 const qaList: Record<
   string,
   {
@@ -10,58 +12,64 @@ const qaList: Record<
   'Beyaz Eşya Servisi': {
     question: 'Beyaz eşyalarım neden düzgün çalışmıyor?',
     answer:
-      'Düzenli bakım yapılmayan beyaz eşyalar zamanla performans kaybı yaşayabilir. Servisimiz bu konuda destek sunar.',
+      'Düzenli bakım yapılmayan beyaz eşyalar zamanla performans kaybı yaşar. {company.name} olarak bu konuda teknik destek sunuyoruz.',
     date: '2024-01-01T08:00:00+03:00',
-    author: 'Eterna Teknik Servis',
+    author: company.name,
   },
   Buzdolabı: {
     question: 'Buzdolabım neden soğutmuyor?',
     answer:
-      'Termostat arızası, fan motoru ya da gaz kaçağı soğutmama sebeplerindendir.',
+      'Termostat arızası, fan motoru sorunu veya gaz kaçağı nedeniyle soğutma problemi yaşanabilir.',
     date: '2024-01-01T08:00:00+03:00',
-    author: 'Eterna Teknik Servis',
+    author: company.name,
   },
   'Çamaşır Makinesi': {
-    question: 'Çamaşır makinem ses yapıyor, neden olabilir?',
+    question: 'Çamaşır makinem neden ses yapıyor?',
     answer:
-      'Tambur rulmanı, motor arızası veya dengesiz yük gibi nedenlerle ses yapabilir.',
+      'Tambur rulmanı, motor sorunu veya dengesiz yük nedeniyle ses yapabilir.',
     date: '2024-01-01T08:00:00+03:00',
-    author: 'Eterna Teknik Servis',
+    author: company.name,
   },
   'Bulaşık Makinesi': {
-    question: 'Bulaşıklarım iyi yıkanmıyor, sebebi nedir?',
+    question: 'Bulaşıklarım neden iyi yıkanmıyor?',
     answer:
-      'Fıskiyeler tıkalı olabilir veya deterjan dağılımı yetersiz olabilir.',
+      'Fıskiyelerin tıkanması veya deterjan dağılımındaki sorunlar bu duruma neden olabilir.',
     date: '2024-01-01T08:00:00+03:00',
-    author: 'Eterna Teknik Servis',
+    author: company.name,
   },
   Fırın: {
-    question: 'Fırınım ısınmıyor, ne yapmalıyım?',
+    question: 'Fırınım neden ısınmıyor?',
     answer:
-      'Rezistans arızası veya termostat bozulması olabilir. Teknik servis gerekir.',
+      'Rezistans veya termostat arızası nedeniyle fırın ısıtamaz hale gelebilir.',
     date: '2024-01-01T08:00:00+03:00',
-    author: 'Eterna Teknik Servis',
+    author: company.name,
   },
   Klima: {
-    question: 'Klima neden soğutmaz?',
+    question: 'Klima neden soğutmuyor?',
     answer:
-      'Gaz eksikliği, filtre tıkanıklığı veya kompresör arızası olabilir.',
+      'Gaz eksikliği, filtre tıkanıklığı veya kompresör arızası soğutmayı engelleyebilir.',
     date: '2024-01-01T08:00:00+03:00',
-    author: 'Eterna Teknik Servis',
+    author: company.name,
   },
   Kombi: {
-    question: 'Kombim çalışmıyor, neden olabilir?',
+    question: 'Kombim neden çalışmıyor?',
     answer:
       'Basınç düşüklüğü, ateşleme sorunu veya elektronik kart arızası olabilir.',
     date: '2024-01-01T08:00:00+03:00',
-    author: 'Eterna Teknik Servis',
+    author: company.name,
   },
   Televizyon: {
-    question: 'TV görüntü gelmiyor, ses var?',
-    answer: 'Görüntü kartı arızası ya da panel sorunu olabilir.',
+    question: 'TV’de görüntü yok ama ses var, neden?',
+    answer:
+      'Görüntü kartı arızası veya panel bozulması gibi donanım kaynaklı sorunlar olabilir.',
     date: '2024-01-01T08:00:00+03:00',
-    author: 'Eterna Teknik Servis',
+    author: company.name,
   },
 };
+
+// company.name placeholder replace
+Object.entries(qaList).forEach(([, value]) => {
+  value.answer = value.answer.replace('{company.name}', company.name);
+});
 
 export default qaList;

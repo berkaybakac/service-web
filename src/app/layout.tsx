@@ -1,7 +1,7 @@
 import company from '@/config/company';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import FloatingCallButton from '../components/FloatingCallButton'; // ✅ eklendi
+import FloatingCallButton from '../components/FloatingCallButton';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import './globals.css';
@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://eternateknikservis.com'),
+  metadataBase: new URL(company.url),
   title: {
     default: company.name,
     template: `%s | ${company.name}`,
@@ -44,6 +44,13 @@ export const metadata: Metadata = {
     title: company.name,
     description: company.slogan,
     images: [`${company.url}/service-web-og.webp`],
+  },
+  alternates: {
+    canonical: company.url,
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -82,22 +89,12 @@ export default function RootLayout({
         closes: '17:00',
       },
     ],
+    url: company.url,
   };
 
   return (
     <html lang="tr">
       <head>
-        <meta name="description" content={company.slogan} />
-        <meta property="og:image" content="/service-web-og.webp" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Eterna Teknik Servis" />
-        <meta
-          property="og:description"
-          content="Beyaz Eşya Teknik Servisinde Güvenin Adı"
-        />
-        <meta property="og:url" content="https://eternateknikservis.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -109,7 +106,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-grow">{children}</main>
         <Footer />
-        <FloatingCallButton /> {/* ✅ tam buraya eklendi */}
+        <FloatingCallButton />
       </body>
     </html>
   );

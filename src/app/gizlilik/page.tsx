@@ -1,37 +1,14 @@
-// src/app/gizlilik/page.tsx
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Gizlilik Politikası - Eterna Teknik Servis',
-  description:
-    'Eterna Teknik Servis Gizlilik Politikası: Kişisel verilerinizin nasıl toplandığı, kullanıldığı ve korunduğu hakkında bilgi edinin.',
-  openGraph: {
-    title: 'Gizlilik Politikası - Eterna Teknik Servis',
-    description:
-      'Eterna Teknik Servis Gizlilik Politikası: Kişisel verilerinizin nasıl toplandığı, kullanıldığı ve korunduğu hakkında bilgi edinin.',
-    url: 'https://eternateknikservis.com/gizlilik', // Kendi domaininizi buraya yazın
-    siteName: 'Eterna Teknik Servis',
-    locale: 'tr_TR',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary', // Görsel olmadığı için summary kart tipi daha uygun
-    title: 'Gizlilik Politikası - Eterna Teknik Servis',
-    description:
-      'Eterna Teknik Servis Gizlilik Politikası: Kişisel verilerinizin nasıl toplandığı, kullanıldığı ve korunduğu hakkında bilgi edinin.',
-  },
-};
+import company from '@/config/company';
 
 export default function PrivacyPolicyPage() {
   return (
     <main className="min-h-screen bg-black text-white p-6">
       <div className="max-w-4xl mx-auto py-12">
-        {/* Başlık rengi beyaza çevrildi */}
         <h1 className="text-4xl font-bold mb-6 text-center text-white">
           Gizlilik Politikası
         </h1>
         <p className="text-gray-300 leading-relaxed mb-4">
-          Bu Gizlilik Politikası, Eterna Teknik Servis web sitesi (bundan böyle
+          Bu Gizlilik Politikası, {company.name} web sitesi (bundan böyle
           &quot;Site&quot; olarak anılacaktır) aracılığıyla topladığımız kişisel
           verilerinizi nasıl kullandığımızı, koruduğumuzu ve ifşa ettiğimizi
           açıklamaktadır. Sitemizi kullanarak bu politikayı kabul etmiş

@@ -1,29 +1,34 @@
+import company from '@/config/company';
+
 const faqList = [
   {
     question: 'Servis ücretleri ne kadar?',
     answer:
-      'Servis ücretleri arızaya ve ürün tipine göre değişmektedir. Detaylı bilgi için iletişime geçebilirsiniz.',
+      'Servis ücretleri, cihaz türüne ve arıza durumuna göre değişkenlik göstermektedir. Net bilgi için bizimle iletişime geçebilirsiniz.',
   },
   {
     question: 'Aynı gün içinde servis hizmeti alabilir miyim?',
     answer:
-      'Müsaitlik durumuna göre aynı gün içinde servis verilmektedir. Lütfen erken saatlerde randevu alınız.',
+      'Müsaitlik durumuna göre aynı gün içerisinde servis hizmeti sağlanabilir. Erken saatlerde randevu almanız tavsiye edilir.',
   },
   {
     question: 'Servis sonrası garanti süresi nedir?',
     answer:
-      'Tüm servis işlemleri 1 yıl garantilidir. Aynı arıza tekrarlanırsa ücretsiz destek sağlanır.',
+      'Tüm servis işlemlerimiz 1 yıl garantilidir. Aynı arıza tekrar ederse, ücretsiz destek sunulmaktadır.',
   },
   {
-    question: 'Yedek parça orijinal mi?',
+    question: 'Yedek parçalar orijinal mi?',
     answer:
-      'Kullandığımız tüm parçalar orijinal ve garantilidir. İsteğe bağlı muadil seçenekleri de sunuyoruz.',
+      'Kullandığımız tüm parçalar orijinal ve garantilidir. Talebiniz doğrultusunda muadil ürün seçeneği de sunabiliriz.',
   },
   {
     question: 'Hangi markalara servis veriyorsunuz?',
     answer:
-      'Arçelik, Beko, Bosch, Siemens, Samsung, LG, Vestel, Altus, Profilo ve daha birçok markaya hizmet veriyoruz.',
+      'Arçelik, Beko, Bosch, Siemens, Samsung, LG, Vestel, Altus, Profilo ve birçok farklı markaya {company.name} olarak teknik servis hizmeti sunuyoruz.',
   },
-];
+].map((item) => ({
+  ...item,
+  answer: item.answer.replace('{company.name}', company.name),
+}));
 
 export default faqList;

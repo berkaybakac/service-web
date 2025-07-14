@@ -1,37 +1,17 @@
 // src/app/kvkk/page.tsx
-import type { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'KVKK Politikası - Eterna Teknik Servis',
-  description:
-    'Eterna Teknik Servis Kişisel Verilerin Korunması Kanunu (KVKK) politikası. Veri sorumlusu olarak kişisel verilerinizi nasıl işlediğimizi öğrenin.',
-  openGraph: {
-    title: 'KVKK Politikası - Eterna Teknik Servis',
-    description:
-      'Eterna Teknik Servis Kişisel Verilerin Korunması Kanunu (KVKK) politikası. Veri sorumlusu olarak kişisel verilerinizi nasıl işlediğimizi öğrenin.',
-    url: 'https://eternateknikservis.com/kvkk', // Kendi domaininizi buraya yazın
-    siteName: 'Eterna Teknik Servis',
-    locale: 'tr_TR',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary', // Görsel olmadığı için summary kart tipi daha uygun
-    title: 'KVKK Politikası - Eterna Teknik Servis',
-    description:
-      'Eterna Teknik Servis Kişisel Verilerin Korunması Kanunu (KVKK) politikası. Veri sorumlusu olarak kişisel verilerinizi nasıl işlediğimizi öğrenin.',
-  },
-};
+import company from '@/config/company';
 
 export default function KvkkPage() {
   return (
     <main className="min-h-screen bg-black text-white p-6">
       <div className="max-w-4xl mx-auto py-12">
-        {/* Başlık rengi beyaza çevrildi */}
         <h1 className="text-4xl font-bold mb-6 text-center text-white">
           Kişisel Verilerin Korunması Kanunu (KVKK) Politikası
         </h1>
         <p className="text-gray-300 leading-relaxed mb-4">
-          Eterna Teknik Servis olarak, Kişisel Verilerin Korunması Kanunu (KVKK)
+          {company.name} olarak, Kişisel Verilerin Korunması Kanunu (KVKK)
           kapsamında, kişisel verilerinizin gizliliğine ve güvenliğine büyük
           önem vermekteyiz. Bu politika, veri sorumlusu sıfatıyla kişisel
           verilerinizi nasıl topladığımızı, işlediğimizi, sakladığımızı,
@@ -90,7 +70,7 @@ export default function KvkkPage() {
         </h2>
         <p className="text-gray-300 leading-relaxed mb-4">
           Toplanan kişisel verileriniz, ilgili yasal mevzuatta belirtilen veya
-          işlendikleri amaç için gerekli olan süre kadar muhafaza edilir.
+          işlendiği amaç için gerekli olan süre kadar muhafaza edilir.
           Verilerinizin güvenliğini sağlamak amacıyla gerekli teknik ve idari
           tedbirler alınmaktadır.
         </p>

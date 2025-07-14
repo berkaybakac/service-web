@@ -1,5 +1,6 @@
 'use client';
 
+import company from '@/config/company';
 import {
   Bars3Icon,
   ChevronDownIcon,
@@ -43,10 +44,10 @@ export default function Header() {
     <header className="bg-[#0f1117] py-4 px-6 shadow-md sticky top-0 z-50">
       <nav className="max-w-7xl mx-auto flex justify-between items-center">
         <Link href="/" className="text-white font-bold text-base md:text-lg">
-          Eterna Teknik Servis
+          {company.name}
         </Link>
 
-        {/* Desktop Menü */}
+        {/* Masaüstü Menü */}
         <ul className="hidden md:flex space-x-6 text-sm font-medium">
           {navItems.map((item) =>
             item.name === 'Hizmetler' ? (
@@ -117,7 +118,7 @@ export default function Header() {
         </button>
       </nav>
 
-      {/* Mobil Menü Açılır */}
+      {/* Mobil Menü */}
       {isMenuOpen && (
         <div className="md:hidden mt-4 space-y-3 px-2 pb-4">
           {navItems.map((item) => (

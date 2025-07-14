@@ -76,7 +76,7 @@ export default function ServiceDetailPage() {
     () => ({
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',
-      name: `Eterna Teknik Servis - ${pageTitle}`,
+      name: `${company.name} - ${pageTitle}`,
       description: pageDescription,
       url: `${company.url}/hizmet?service=${encodeURIComponent(
         displayServiceName

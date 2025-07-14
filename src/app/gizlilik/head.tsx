@@ -1,7 +1,8 @@
+import company from '@/config/company';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Gizlilik Politikası | Eterna Teknik Servis',
+  title: `Gizlilik Politikası | ${company.name}`,
   description:
     'Kullanıcı gizliliğine verdiğimiz önemi ve kişisel verilerin nasıl korunduğunu öğrenin.',
   robots: {
@@ -9,20 +10,20 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: 'https://eternateknikservis.com/gizlilik',
+    canonical: `${company.url}/gizlilik`,
   },
   openGraph: {
-    title: 'Gizlilik Politikası | Eterna Teknik Servis',
+    title: `Gizlilik Politikası | ${company.name}`,
     description:
       'Kullanıcı gizliliğine verdiğimiz önemi ve kişisel verilerin nasıl korunduğunu öğrenin.',
-    url: 'https://eternateknikservis.com/gizlilik',
-    siteName: 'Eterna Teknik Servis',
+    url: `${company.url}/gizlilik`,
+    siteName: company.name,
     type: 'article',
     locale: 'tr_TR',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Gizlilik Politikası | Eterna Teknik Servis',
+    title: `Gizlilik Politikası | ${company.name}`,
     description:
       'Kullanıcı gizliliğine verdiğimiz önemi ve kişisel verilerin nasıl korunduğunu öğrenin.',
   },

@@ -1,28 +1,31 @@
 'use client';
 
+import company from '@/config/company';
 import { PhoneIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function FloatingCallButton() {
-  const [isVisible, setIsVisible] = useState(true);
   const pathname = usePathname();
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const updateVisibility = () => {
+    const handleScroll = () => {
       const nearBottom =
-        window.scrollY + window.innerHeight >=
+        window.innerHeight + window.scrollY >=
         document.documentElement.scrollHeight - 100;
-      setIsVisible(!nearBottom);
+      setVisible(!nearBottom);
     };
 
-    updateVisibility();
-    window.addEventListener('scroll', updateVisibility);
-    window.addEventListener('resize', updateVisibility);
+    handleScroll(); // sayfa ilk yüklendiğinde kontrol et
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+
     return () => {
-      window.removeEventListener('scroll', updateVisibility);
-      window.removeEventListener('resize', updateVisibility);
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
     };
   }, []);
 
@@ -31,13 +34,13 @@ export default function FloatingCallButton() {
   return (
     <div
       className={`fixed bottom-5 right-5 z-50 sm:hidden transition-opacity duration-300 ${
-        isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        visible ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}
     >
       <Link
-        href="tel:+908501234567"
+        href={`tel:${company.phone.replace(/\s/g, '')}`}
         className="flex items-center justify-center rounded-full bg-green-600 hover:bg-green-700 text-white w-14 h-14 shadow-lg transition-all duration-300"
-        aria-label="Hemen Ara"
+        aria-label={`Ara: ${company.phone}`}
       >
         <PhoneIcon className="h-6 w-6" />
       </Link>

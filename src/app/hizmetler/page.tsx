@@ -1,4 +1,6 @@
 'use client';
+
+import company from '@/config/company';
 import Link from 'next/link';
 
 export default function ServicesPage() {
@@ -42,7 +44,7 @@ export default function ServicesPage() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-6 text-center">Hizmetlerimiz</h1>
         <p className="text-gray-300 mb-8 text-center">
-          Beyaz eşyalarınız için sunduğumuz profesyonel teknik servis
+          {company.name} olarak sunduğumuz profesyonel teknik servis
           hizmetlerimiz aşağıda listelenmiştir.
         </p>
 
@@ -53,7 +55,7 @@ export default function ServicesPage() {
               href={`/hizmet?service=${encodeURIComponent(title)}`}
               className="bg-gray-900 p-6 rounded shadow hover:shadow-lg transition block hover:bg-gray-800"
             >
-              <h2 className="text-xl font-semibold mb-2">{title} </h2>
+              <h2 className="text-xl font-semibold mb-2">{title}</h2>
               <p className="text-gray-400 text-sm">{desc}</p>
             </Link>
           ))}

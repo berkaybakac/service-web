@@ -1,45 +1,23 @@
-// src/app/hakkimizda/page.tsx
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Hakkımızda - Eterna Teknik Servis',
-  description:
-    'Eterna Teknik Servis olarak uzun yıllardır sektörde hizmet veriyoruz. Misyonumuz, kaliteli ve güvenilir servis anlayışıyla müşteri memnuniyetini en üst düzeyde tutmaktır.',
-  openGraph: {
-    title: 'Hakkımızda - Eterna Teknik Servis',
-    description:
-      'Eterna Teknik Servis olarak uzun yıllardır sektörde hizmet veriyoruz. Misyonumuz, kaliteli ve güvenilir servis anlayışıyla müşteri memnuniyetini en üst düzeyde tutmaktır.',
-    url: 'https://eternateknikservis.com/hakkimizda', // Kendi domaininizi buraya yazın
-    siteName: 'Eterna Teknik Servis',
-    locale: 'tr_TR',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary', // Görsel olmadığı için summary kart tipi daha uygun
-    title: 'Hakkımızda - Eterna Teknik Servis',
-    description:
-      'Eterna Teknik Servis olarak uzun yıllardır sektörde hizmet veriyoruz. Misyonumuz, kaliteli ve güvenilir servis anlayışıyla müşteri memnuniyetini en üst düzeyde tutmaktır.',
-  },
-};
+import company from '@/config/company';
 
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-black text-white p-6">
       <div className="max-w-4xl mx-auto py-12">
-        {/* Başlık rengi beyaza çevrildi */}
         <h1 className="text-4xl font-bold mb-6 text-center text-white">
           Hakkımızda
         </h1>
+
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4 text-gray-200">
-            Eterna Teknik Servis Kimdir?
+            {company.name} Kimdir?
           </h2>
           <p className="text-gray-300 leading-relaxed mb-4">
-            Eterna Teknik Servis olarak, uzun yıllardır sektördeki tecrübemizle
-            beyaz eşya, kombi, klima ve televizyon gibi ev aletlerinin bakım,
-            onarım ve montaj hizmetlerini sunmaktayız. Müşteri memnuniyetini her
-            zaman ön planda tutarak, hızlı, güvenilir ve kaliteli çözümler
-            sunmayı hedefliyoruz.
+            {company.name} olarak, uzun yıllardır sektördeki tecrübemizle beyaz
+            eşya, kombi, klima ve televizyon gibi ev aletlerinin bakım, onarım
+            ve montaj hizmetlerini sunmaktayız. Müşteri memnuniyetini her zaman
+            ön planda tutarak, hızlı, güvenilir ve kaliteli çözümler sunmayı
+            hedefliyoruz.
           </p>
           <p className="text-gray-300 leading-relaxed">
             Alanında uzman ve deneyimli teknik ekibimizle, cihazlarınızdaki
@@ -49,6 +27,7 @@ export default function AboutPage() {
             verimlilikle çalışmalarını sağlıyoruz.
           </p>
         </section>
+
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4 text-gray-200">
             Misyonumuz
@@ -63,6 +42,7 @@ export default function AboutPage() {
             amaçlıyoruz.
           </p>
         </section>
+
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4 text-gray-200">
             Vizyonumuz
@@ -76,9 +56,10 @@ export default function AboutPage() {
             müşterilerimizin yanında olmayı hedefliyoruz.
           </p>
         </section>
+
         <section>
           <h2 className="text-2xl font-semibold mb-4 text-gray-200">
-            Neden Eterna Teknik Servis?
+            Neden {company.name}?
           </h2>
           <ul className="list-disc list-inside text-gray-300 leading-relaxed">
             <li className="mb-2">Deneyimli ve Uzman Kadro</li>

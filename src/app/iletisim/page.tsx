@@ -1,33 +1,12 @@
 // src/app/iletisim/page.tsx
-import company from '@/config/company'; // company bilgilerini import et
-import type { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'İletişim - Eterna Teknik Servis',
-  description:
-    'Eterna Teknik Servis ile iletişime geçmek için telefon numaralarımızı, e-posta adresimizi ve adres bilgilerimizi kullanabilirsiniz. Tüm sorularınız için buradayız.',
-  openGraph: {
-    title: 'İletişim - Eterna Teknik Servis',
-    description:
-      'Eterna Teknik Servis ile iletişime geçmek için telefon numaralarımızı, e-posta adresimizi ve adres bilgilerimizi kullanabilirsiniz. Tüm sorularınız için buradayız.',
-    url: 'https://eternateknikservis.com/iletisim', // Kendi domaininizi buraya yazın
-    siteName: 'Eterna Teknik Servis',
-    locale: 'tr_TR',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary', // Görsel olmadığı için summary kart tipi daha uygun
-    title: 'İletişim - Eterna Teknik Servis',
-    description:
-      'Eterna Teknik Servis ile iletişime geçmek için telefon numaralarımızı, e-posta adresimizi ve adres bilgilerimizi kullanabilirsiniz. Tüm sorularınız için buradayız.',
-  },
-};
+import company from '@/config/company';
 
 export default function ContactPage() {
   return (
     <main className="min-h-screen bg-black text-white p-6">
       <div className="max-w-xl mx-auto py-12">
-        {/* Başlık rengi beyaza çevrildi */}
         <h1 className="text-4xl font-bold mb-6 text-center text-white">
           İletişim
         </h1>

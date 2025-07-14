@@ -1,6 +1,29 @@
 'use client';
 
+import company from '@/config/company';
 import faqList from '@/data/faqList';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: `Sık Sorulan Sorular | ${company.name}`,
+  description: `${company.name} ile ilgili en çok merak edilen soruların cevaplarını burada bulabilirsiniz.`,
+  alternates: {
+    canonical: `${company.url}/sss`,
+  },
+  openGraph: {
+    title: `Sık Sorulan Sorular | ${company.name}`,
+    description: `${company.name} ile ilgili en çok merak edilen soruların cevaplarını burada bulabilirsiniz.`,
+    url: `${company.url}/sss`,
+    siteName: company.name,
+    locale: 'tr_TR',
+    type: 'article',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `Sık Sorulan Sorular | ${company.name}`,
+    description: `${company.name} ile ilgili en çok merak edilen soruların cevaplarını burada bulabilirsiniz.`,
+  },
+};
 
 export default function FAQPage() {
   return (
@@ -22,6 +45,7 @@ export default function FAQPage() {
           }),
         }}
       />
+
       <main className="bg-black text-white min-h-screen px-6 py-12">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-3xl font-bold mb-8 text-center">

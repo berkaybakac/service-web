@@ -1,7 +1,9 @@
+// src/app/kvkk/head.tsx
+import company from '@/config/company';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'KVKK Aydınlatma Metni | Eterna Teknik Servis',
+  title: `KVKK Aydınlatma Metni | ${company.name}`,
   description:
     'Kişisel verilerin korunmasına dair yasal sorumluluklarımız hakkında bilgi edinin.',
   robots: {
@@ -9,20 +11,20 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: 'https://eternateknikservis.com/kvkk',
+    canonical: `${company.url}/kvkk`,
   },
   openGraph: {
-    title: 'KVKK Aydınlatma Metni | Eterna Teknik Servis',
+    title: `KVKK Aydınlatma Metni | ${company.name}`,
     description:
       'Kişisel verilerin korunmasına dair yasal sorumluluklarımız hakkında bilgi edinin.',
-    url: 'https://eternateknikservis.com/kvkk',
-    siteName: 'Eterna Teknik Servis',
+    url: `${company.url}/kvkk`,
+    siteName: company.name,
     type: 'article',
     locale: 'tr_TR',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'KVKK Aydınlatma Metni | Eterna Teknik Servis',
+    title: `KVKK Aydınlatma Metni | ${company.name}`,
     description:
       'Kişisel verilerin korunmasına dair yasal sorumluluklarımız hakkında bilgi edinin.',
   },

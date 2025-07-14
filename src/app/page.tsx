@@ -1,5 +1,6 @@
 'use client';
 
+import company from '@/config/company';
 import { PhoneIcon } from '@heroicons/react/24/solid';
 
 export default function Home() {
@@ -8,7 +9,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="flex flex-col justify-center items-center text-center px-6 pt-16 pb-10 md:pt-24 md:pb-16 min-h-[60vh]">
         <h1 className="text-4xl md:text-6xl font-bold mb-6 max-w-md md:max-w-xl break-words">
-          Eterna Teknik Servis
+          {company.name}
         </h1>
         <p className="text-base md:text-xl text-gray-300 mb-8 max-w-md md:max-w-xl">
           Beyaz eşyalarınız için güvenilir, hızlı ve profesyonel teknik servis
@@ -16,7 +17,7 @@ export default function Home() {
         </p>
 
         <a
-          href="tel:+908502324567"
+          href={`tel:${company.phone.replace(/\s/g, '')}`}
           className="mt-4 inline-flex items-center gap-4 px-6 py-3 rounded-full bg-gradient-to-r from-slate-900 via-neutral-300 to-slate-900 text-white text-base md:text-lg font-semibold tracking-wide shadow-lg hover:shadow-xl transition-transform duration-300 hover:scale-105 text-shadow"
         >
           <PhoneIcon className="w-5 h-5 md:w-6 md:h-6 text-white" />
@@ -130,7 +131,7 @@ export default function Home() {
           Bir telefon kadar yakınız. Hemen iletişime geçin.
         </p>
         <a
-          href="https://wa.me/908502324567"
+          href={`https://wa.me/${company.phone.replace(/\s|\+|-/g, '')}`}
           className="inline-block bg-emerald-700 text-white py-2 px-6 rounded hover:bg-emerald-800 transition"
           target="_blank"
           rel="noopener noreferrer"
