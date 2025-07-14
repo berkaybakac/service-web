@@ -1,6 +1,7 @@
 # 🚀 Eterna Teknik Servis Web Sitesi
 
-Bu proje, **Next.js 14 App Router** mimarisi ile geliştirilen ve SSR + SEO uyumlu, **yüksek performanslı bir teknik servis web sitesidir**. Hedef; beyaz eşya, kombi, klima ve elektronik cihazlar için bakım-onarım bilgisi sunan, **tamamen responsive**, **mobilde <1s açılan**, ve **Google PageSpeed puanı 100/100** olan bir dijital altyapı sunmaktır.
+Bu proje, **Next.js 14 App Router** mimarisi ile geliştirilen ve SSR + SEO uyumlu, **yüksek performanslı bir teknik servis web sitesidir**.  
+Hedef; beyaz eşya, kombi, klima ve elektronik cihazlar için bakım-onarım bilgisi sunan, **tamamen responsive**, **mobilde <1s açılan**, ve **Google PageSpeed puanı 100/100** olan bir dijital altyapı sunmaktır.
 
 ## 📦 Özellikler
 
@@ -8,8 +9,8 @@ Bu proje, **Next.js 14 App Router** mimarisi ile geliştirilen ve SSR + SEO uyum
 - 📱 **Mobil öncelikli tasarım** ve tam responsive görünüm
 - ✅ **Google PageSpeed Insights: 100/100** (Mobil & Masaüstü)
 - 🧠 **Serpsonic destekli 10.000+ karakterlik SEO makalesi** entegrasyonu
-- 🧩 **Schema.org yapısal verileri:**
-  - `Article`, `LocalBusiness`, `BreadcrumbList`, `ReviewSnippet`, `FAQPage`, `QAPage`
+- 🧩 **Schema.org yapısal verileri:**  
+  `Article`, `LocalBusiness`, `BreadcrumbList`, `ReviewSnippet`, `FAQPage`, `QAPage`
 - 💬 **Dinamik müşteri yorumları** ve **soru-cevap sistemleri**
 - 🗺️ `sitemap.xml` ve `robots.txt` otomatik üretim
 - 🌐 OG / Twitter meta etiketleri ile zengin paylaşım deneyimi
@@ -25,8 +26,8 @@ Bu proje, **Next.js 14 App Router** mimarisi ile geliştirilen ve SSR + SEO uyum
 - `/kvkk` – KVKK Metni
 - `/gizlilik` – Gizlilik Politikası
 - `/sss` – Sıkça Sorulan Sorular
-- `/hizmet?service=Beyaz+Eşya+Servisi` → Dinamik hizmet sayfaları:
-- Beyaz Eşya Servisi, Buzdolabı, Çamaşır Makinesi, Bulaşık Makinesi, Fırın, Klima, Kombi, Televizyon
+- `/hizmet?service=Beyaz+Eşya+Servisi` → Dinamik hizmet sayfaları:  
+  Beyaz Eşya Servisi, Buzdolabı, Çamaşır Makinesi, Bulaşık Makinesi, Fırın, Klima, Kombi, Televizyon
 
 ## ⚙️ Kurulum
 
@@ -38,10 +39,9 @@ npm install
 
 # Geliştirme sunucusunu başlatın
 npm run dev
+```
 
-Ardından tarayıcıda `http://localhost:3000` adresine gidin.
-
----
+Ardından tarayıcıda [http://localhost:3000](http://localhost:3000) adresine gidin.
 
 ## ⚙️ Konfigürasyon
 
@@ -49,8 +49,6 @@ Ardından tarayıcıda `http://localhost:3000` adresine gidin.
 - `public/article.md` → Serpsonic SEO makalesi markdown olarak çekilir
 - `src/data/fakeReviews.ts` → Sahte müşteri yorumları
 - `tailwind.config.js`, `postcss.config.mjs`, `next-sitemap.config.js` → Stil & SEO konfigürasyonları
-
----
 
 ## 🧪 Performans ve SEO
 
@@ -71,29 +69,22 @@ Proje; mobilde ve masaüstünde aşağıdaki metrikleri hedefler:
 - Ahrefs
 - ScreamingFrog
 
----
-
 ## 📌 Uyarı
 
-📣 Bu site **yetkili servis değildir**.
-Yalnızca **garanti dışı cihazlar** için bakım, onarım ve arıza çözümleri sunar.
+📣 Bu site **yetkili servis değildir**.  
+Yalnızca **garanti dışı cihazlar** için bakım, onarım ve arıza çözümleri sunar.  
 Bu bilgi her sayfada açık şekilde belirtilmiştir.
-
----
 
 ## 🚀 Deployment
 
-Proje Vercel üzerinde yayınlanmıştır:
-🔗 [service-web-blush.vercel.app](https://service-web-blush.vercel.app)
-
----
+Proje Vercel üzerinde yayınlanmıştır:  
+🔗 [https://service-web-blush.vercel.app](https://service-web-blush.vercel.app)
 
 ## 👨‍💻 Geliştirici
 
-Bu proje, **Eterna Teknoloji A.Ş.** bünyesinde,
-**Mersin Üniversitesi Bilgisayar Mühendisliği Zorunlu Yaz Stajı (07.07.2025 – 01.09.2025)** kapsamında
+Bu proje, **Eterna Teknoloji A.Ş.** bünyesinde,  
+**Mersin Üniversitesi Bilgisayar Mühendisliği Zorunlu Yaz Stajı (07.07.2025 – 01.09.2025)** kapsamında  
 **Berkay Bakaç** tarafından geliştirilmiştir.
 
 - GitHub → [@berkaybakac](https://github.com/berkaybakac)
 - LinkedIn → [linkedin.com/in/berkaybakac](https://linkedin.com/in/berkaybakac)
-```
