@@ -1,19 +1,11 @@
-'use client';
-
 import Breadcrumb from '@/components/Breadcrumb';
-import company from '@/config/company';
 import { fakeReviews } from '@/data/fakeReviews';
-import qaList from '@/data/qaList';
-import dynamic from 'next/dynamic';
-import { useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
-
-const LazyArticleContent = dynamic(
-  () => import('@/components/ArticleContent'),
-  {
-    ssr: false,
-  }
-);
+import fs from 'fs';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import path from 'path';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const services = {
   'Beyaz Eşya Servisi': {
@@ -56,12 +48,18 @@ const services = {
   },
 };
 
-export default function ServiceDetailPage() {
-  const searchParams = useSearchParams();
-  const serviceNameParam = searchParams.get('service');
+export const metadata: Metadata = {
+  title: 'Hizmet',
+  description: 'Servis detayları ve müşteri yorumları',
+};
 
-  const displayServiceName = serviceNameParam
-    ? decodeURIComponent(serviceNameParam.replace(/\+/g, ' '))
+export default function ServiceDetailPage({
+  searchParams,
+}: {
+  searchParams: { service?: string };
+}) {
+  const displayServiceName = searchParams.service
+    ? decodeURIComponent(searchParams.service.replace(/\+/g, ' '))
     : '';
 
   const service = services[displayServiceName as keyof typeof services];
@@ -74,136 +72,40 @@ export default function ServiceDetailPage() {
     ? service.description
     : 'Profesyonel teknik servis hizmetlerimizle tanışın.';
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: service ? `Eterna Teknik Servis - ${service.title}` : company.name,
-    description: service ? service.description : company.slogan,
-    url: `${company.url}/hizmet?service=${encodeURIComponent(
-      displayServiceName
-    )}`,
-    telephone: company.phone,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: company.address.street,
-      addressLocality: company.address.city,
-      addressCountry: 'TR',
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.7',
-      reviewCount: fakeReviews.length.toString(),
-    },
-    review: fakeReviews.map((r) => ({
-      '@type': 'Review',
-      author: {
-        '@type': 'Person',
-        name: r.author,
-      },
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: r.stars,
-        bestRating: 5,
-      },
-      reviewBody: r.text,
-    })),
-  };
+  const articlePath = path.join(process.cwd(), 'public/article.md');
+  const articleContent = fs.readFileSync(articlePath, 'utf8');
+
+  if (!service) return notFound();
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+    <main className="bg-black text-white px-6 py-12">
+      <Breadcrumb />
+      <div className="max-w-3xl mx-auto">
+        <h1 className="text-3xl font-bold mb-4 text-center">{pageTitle}</h1>
+        <p className="text-gray-300 mb-6 text-center">{pageDescription}</p>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              {
-                '@type': 'ListItem',
-                position: 1,
-                name: 'Ana Sayfa',
-                item: `${company.url}/`,
-              },
-              {
-                '@type': 'ListItem',
-                position: 2,
-                name: 'Hizmetler',
-                item: `${company.url}/hizmet`,
-              },
-              {
-                '@type': 'ListItem',
-                position: 3,
-                name: pageTitle,
-                item: `${company.url}/hizmet?service=${encodeURIComponent(
-                  displayServiceName
-                )}`,
-              },
-            ],
-          }),
-        }}
-      />
-
-      {qaList[displayServiceName] && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'QAPage',
-              mainEntity: {
-                '@type': 'Question',
-                name: qaList[displayServiceName].question,
-                text: qaList[displayServiceName].question,
-                answerCount: 1,
-                dateCreated: qaList[displayServiceName].date,
-                author: {
-                  '@type': 'Person',
-                  name: qaList[displayServiceName].author,
-                },
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: qaList[displayServiceName].answer,
-                  datePublished: qaList[displayServiceName].date,
-                  author: {
-                    '@type': 'Person',
-                    name: qaList[displayServiceName].author,
-                  },
-                },
-              },
-            }),
-          }}
-        />
-      )}
-
-      <main className="bg-black text-white px-6 py-12">
-        <Breadcrumb />
-        <div className="max-w-3xl mx-auto text-center">
-          <Suspense fallback={<div>Makale içeriği yükleniyor...</div>}>
-            <LazyArticleContent />
-          </Suspense>
-
-          <h1 className="text-3xl font-bold mb-4">{pageTitle}</h1>
-          <p className="text-gray-300 mb-8">{pageDescription}</p>
-
-          <h2 className="text-xl font-semibold mb-4">Müşteri Yorumları</h2>
-          <ul className="space-y-4">
-            {fakeReviews.map((review, index) => (
-              <li key={index} className="text-left">
-                <div className="text-yellow-400">
-                  {'★'.repeat(review.stars)}
-                  {'☆'.repeat(5 - review.stars)}
-                </div>
-                <p className="text-gray-300">{review.text}</p>
-              </li>
-            ))}
-          </ul>
+        <div className="bg-[#12141c] p-4 rounded mb-6 transition-all duration-300">
+          <ReactMarkdown
+            className="prose prose-invert max-w-none"
+            remarkPlugins={[remarkGfm]}
+          >
+            {articleContent}
+          </ReactMarkdown>
         </div>
-      </main>
-    </>
+
+        <h2 className="text-xl font-semibold mb-4">Müşteri Yorumları</h2>
+        <ul className="space-y-6 text-left">
+          {fakeReviews.map((review, index) => (
+            <li key={index}>
+              <div className="text-yellow-400 leading-none text-lg">
+                {'★'.repeat(review.stars)}
+                {'☆'.repeat(5 - review.stars)}
+              </div>
+              <p className="text-gray-300">{review.text}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </main>
   );
 }
