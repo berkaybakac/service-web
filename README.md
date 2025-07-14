@@ -26,7 +26,7 @@ Bu proje, **Next.js 14 App Router** mimarisi ile geliştirilen ve SSR + SEO uyum
 - `/gizlilik` – Gizlilik Politikası
 - `/sss` – Sıkça Sorulan Sorular
 - `/hizmet?service=Beyaz+Eşya+Servisi` → Dinamik hizmet sayfaları:
-  - Beyaz Eşya Servisi, Buzdolabı, Çamaşır Makinesi, Bulaşık Makinesi, Fırın, Klima, Kombi, Televizyon
+- Beyaz Eşya Servisi, Buzdolabı, Çamaşır Makinesi, Bulaşık Makinesi, Fırın, Klima, Kombi, Televizyon
 
 ## ⚙️ Kurulum
 
@@ -39,9 +39,11 @@ npm install
 # Geliştirme sunucusunu başlatın
 npm run dev
 
-# Ardından tarayıcıda http://localhost:3000 adresine gidin
+Ardından tarayıcıda `http://localhost:3000` adresine gidin.
 
-## ⚙️ Konfigürasyon
+---
+
+## 📁 Konfigürasyon
 
 - `src/config/company.ts` → Şirket bilgileri burada merkezi olarak tutulur.
 - `public/article.md` → Serpsonic makalesi markdown olarak buradan yüklenir.
@@ -54,13 +56,13 @@ npm run dev
 
 Proje; mobilde ve masaüstünde aşağıdaki metrikleri hedefler:
 
-| **Metrik**             | **Hedef**    |
-|------------------------|--------------|
-| PageSpeed Skoru        | 100          |
-| Mobil Açılış Süresi    | < 1sn        |
-| HTML Başlıklar         | Optimize     |
-| OG/Twitter Etiketleri  | Eksiksiz     |
-| Schema.org             | Entegre      |
+| Metrik           | Hedef    |
+|------------------|----------|
+| PageSpeed Skoru  | 100      |
+| Mobil Açılış Süresi | < 1sn    |
+| HTML Başlıklar   | Optimize |
+| OG/Twitter Etiketleri | Eksiksiz |
+| Schema.org       | Entegre  |
 
 ### Doğrulama araçları:
 
