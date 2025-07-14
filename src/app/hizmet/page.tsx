@@ -3,14 +3,17 @@
 import Breadcrumb from '@/components/Breadcrumb';
 import company from '@/config/company';
 import { fakeReviews } from '@/data/fakeReviews';
+import faqList from '@/data/faqList';
 import qaList from '@/data/qaList';
 import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
+import { Suspense, useMemo } from 'react';
 
 const LazyArticleContent = dynamic(
   () => import('@/components/ArticleContent'),
-  { ssr: false }
+  {
+    ssr: false,
+  }
 );
 
 const services = {
@@ -57,102 +60,69 @@ const services = {
 export default function ServiceDetailPage() {
   const searchParams = useSearchParams();
   const serviceNameParam = searchParams.get('service');
-
   const displayServiceName = serviceNameParam
     ? decodeURIComponent(serviceNameParam.replace(/\+/g, ' '))
     : '';
-
   const service = services[displayServiceName as keyof typeof services];
 
-  const pageTitle = service
-    ? service.title
-    : displayServiceName || 'Genel Teknik Servis Hizmetleri';
+  const pageTitle = service?.title || displayServiceName || 'Teknik Servis';
+  const pageDescription =
+    service?.description || 'Profesyonel teknik servis hizmetleri.';
 
-  const pageDescription = service
-    ? service.description
-    : 'Profesyonel teknik servis hizmetlerimizle tanışın.';
+  const qaData = qaList[displayServiceName];
+  const faqData = faqList;
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: service ? `Eterna Teknik Servis - ${service.title}` : company.name,
-    description: service ? service.description : company.slogan,
-    url: `${company.url}/hizmet?service=${encodeURIComponent(
-      displayServiceName
-    )}`,
-    telephone: company.phone,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: company.address.street,
-      addressLocality: company.address.city,
-      addressCountry: 'TR',
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.7',
-      reviewCount: fakeReviews.length.toString(),
-    },
-    review: fakeReviews.map((r) => ({
-      '@type': 'Review',
-      author: { '@type': 'Person', name: r.author },
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: r.stars,
-        bestRating: 5,
+  const jsonLd = useMemo(
+    () => ({
+      '@context': 'https://schema.org',
+      '@type': 'LocalBusiness',
+      name: `Eterna Teknik Servis - ${pageTitle}`,
+      description: pageDescription,
+      url: `${company.url}/hizmet?service=${encodeURIComponent(
+        displayServiceName
+      )}`,
+      telephone: company.phone,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: company.address.street,
+        addressLocality: company.address.city,
+        addressCountry: 'TR',
       },
-      reviewBody: r.text,
-    })),
-  };
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.7',
+        reviewCount: fakeReviews.length.toString(),
+      },
+      review: fakeReviews.map((r) => ({
+        '@type': 'Review',
+        author: { '@type': 'Person', name: r.author },
+        reviewRating: {
+          '@type': 'Rating',
+          ratingValue: r.stars,
+          bestRating: 5,
+        },
+        reviewBody: r.text,
+      })),
+    }),
+    [pageTitle, pageDescription, displayServiceName]
+  );
 
-  const breadcrumbJson = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Ana Sayfa',
-        item: `${company.url}/`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Hizmetler',
-        item: `${company.url}/hizmetler`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: pageTitle,
-        item: `${company.url}/hizmet?service=${encodeURIComponent(
-          displayServiceName
-        )}`,
-      },
-    ],
-  };
-
-  const qaJson = qaList[displayServiceName]
+  const qaJson = qaData
     ? {
         '@context': 'https://schema.org',
         '@type': 'QAPage',
         mainEntity: {
           '@type': 'Question',
-          name: qaList[displayServiceName].question,
-          text: qaList[displayServiceName].question,
+          name: qaData.question,
+          text: qaData.question,
           answerCount: 1,
-          dateCreated: qaList[displayServiceName].date,
-          author: {
-            '@type': 'Person',
-            name: qaList[displayServiceName].author,
-          },
+          dateCreated: qaData.date,
+          author: { '@type': 'Person', name: qaData.author },
           acceptedAnswer: {
             '@type': 'Answer',
-            text: qaList[displayServiceName].answer,
-            datePublished: qaList[displayServiceName].date,
-            author: {
-              '@type': 'Person',
-              name: qaList[displayServiceName].author,
-            },
+            text: qaData.answer,
+            datePublished: qaData.date,
+            author: { '@type': 'Person', name: qaData.author },
           },
         },
       }
@@ -164,10 +134,6 @@ export default function ServiceDetailPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJson) }}
-      />
       {qaJson && (
         <script
           type="application/ld+json"
@@ -175,13 +141,22 @@ export default function ServiceDetailPage() {
         />
       )}
 
-      <main className="bg-black text-white px-6 py-12">
+      <main className="bg-black text-white px-4 sm:px-6 py-12">
         <Breadcrumb />
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-3xl font-bold mb-4 text-center">{pageTitle}</h1>
-          <p className="text-gray-300 mb-6 text-center">{pageDescription}</p>
 
-          {/* ✅ Sadece yeni toggle kart gösteriliyor */}
+        <div className="max-w-3xl mx-auto text-center mb-8">
+          <h1 className="text-3xl font-bold mb-2">{pageTitle}</h1>
+          <p className="text-gray-300">{pageDescription}</p>
+
+          <a
+            href={`tel:${company.phone}`}
+            className="inline-block mt-4 px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition"
+          >
+            📞 Hemen Servis Çağır
+          </a>
+        </div>
+
+        <div className="max-w-4xl mx-auto">
           <Suspense
             fallback={
               <div className="text-center">Makale içeriği yükleniyor...</div>
@@ -190,18 +165,55 @@ export default function ServiceDetailPage() {
             <LazyArticleContent />
           </Suspense>
 
-          <h2 className="text-xl font-semibold mb-4">Müşteri Yorumları</h2>
-          <ul className="space-y-6 text-left">
+          <h2 className="text-2xl font-semibold mt-10 mb-4 text-center">
+            Müşteri Yorumları
+          </h2>
+          <div className="flex space-x-4 overflow-x-auto pb-4 snap-x snap-mandatory">
             {fakeReviews.map((review, index) => (
-              <li key={index}>
-                <div className="text-yellow-400 leading-none text-lg">
+              <div
+                key={index}
+                className="min-w-[280px] max-w-[300px] bg-[#1e1f25] rounded-lg p-4 shadow snap-center"
+              >
+                <div className="text-yellow-400 text-xl mb-1">
                   {'★'.repeat(review.stars)}
                   {'☆'.repeat(5 - review.stars)}
                 </div>
-                <p className="text-gray-300">{review.text}</p>
-              </li>
+                <p className="text-gray-200 text-sm">{review.text}</p>
+                <p className="text-gray-500 text-xs mt-2 italic">
+                  – {review.author}
+                </p>
+              </div>
             ))}
-          </ul>
+          </div>
+
+          {faqData?.length > 0 && (
+            <>
+              <h2 className="text-2xl font-semibold mt-12 mb-4 text-center">
+                Sıkça Sorulan Sorular
+              </h2>
+              <div className="space-y-4">
+                {faqData.map((faq, i) => (
+                  <details
+                    key={i}
+                    className="bg-[#1e1f25] rounded-md px-4 py-3"
+                  >
+                    <summary className="cursor-pointer font-semibold">
+                      {faq.question}
+                    </summary>
+                    <p className="text-gray-400 mt-2">{faq.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </>
+          )}
+
+          {qaData && (
+            <div className="bg-[#1e1f25] rounded-xl p-4 mt-12">
+              <h3 className="text-xl font-bold mb-2">Soru-Cevap</h3>
+              <p className="font-semibold mb-1">❓ {qaData.question}</p>
+              <p className="text-gray-300">✅ {qaData.answer}</p>
+            </div>
+          )}
         </div>
       </main>
     </>
