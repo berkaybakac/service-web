@@ -6,7 +6,7 @@ import { fakeReviews } from '@/data/fakeReviews';
 import qaList from '@/data/qaList';
 import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
-import { Suspense, useState } from 'react';
+import { Suspense } from 'react';
 
 const LazyArticleContent = dynamic(
   () => import('@/components/ArticleContent'),
@@ -57,7 +57,6 @@ const services = {
 export default function ServiceDetailPage() {
   const searchParams = useSearchParams();
   const serviceNameParam = searchParams.get('service');
-  const [showArticle, setShowArticle] = useState(false);
 
   const displayServiceName = serviceNameParam
     ? decodeURIComponent(serviceNameParam.replace(/\+/g, ' '))
@@ -105,6 +104,60 @@ export default function ServiceDetailPage() {
     })),
   };
 
+  const breadcrumbJson = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Ana Sayfa',
+        item: `${company.url}/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Hizmetler',
+        item: `${company.url}/hizmetler`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: pageTitle,
+        item: `${company.url}/hizmet?service=${encodeURIComponent(
+          displayServiceName
+        )}`,
+      },
+    ],
+  };
+
+  const qaJson = qaList[displayServiceName]
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'QAPage',
+        mainEntity: {
+          '@type': 'Question',
+          name: qaList[displayServiceName].question,
+          text: qaList[displayServiceName].question,
+          answerCount: 1,
+          dateCreated: qaList[displayServiceName].date,
+          author: {
+            '@type': 'Person',
+            name: qaList[displayServiceName].author,
+          },
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: qaList[displayServiceName].answer,
+            datePublished: qaList[displayServiceName].date,
+            author: {
+              '@type': 'Person',
+              name: qaList[displayServiceName].author,
+            },
+          },
+        },
+      }
+    : null;
+
   return (
     <>
       <script
@@ -113,64 +166,12 @@ export default function ServiceDetailPage() {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              {
-                '@type': 'ListItem',
-                position: 1,
-                name: 'Ana Sayfa',
-                item: `${company.url}/`,
-              },
-              {
-                '@type': 'ListItem',
-                position: 2,
-                name: 'Hizmetler',
-                item: `${company.url}/hizmetler`,
-              },
-              {
-                '@type': 'ListItem',
-                position: 3,
-                name: pageTitle,
-                item: `${company.url}/hizmet?service=${encodeURIComponent(
-                  displayServiceName
-                )}`,
-              },
-            ],
-          }),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJson) }}
       />
-      {qaList[displayServiceName] && (
+      {qaJson && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'QAPage',
-              mainEntity: {
-                '@type': 'Question',
-                name: qaList[displayServiceName].question,
-                text: qaList[displayServiceName].question,
-                answerCount: 1,
-                dateCreated: qaList[displayServiceName].date,
-                author: {
-                  '@type': 'Person',
-                  name: qaList[displayServiceName].author,
-                },
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: qaList[displayServiceName].answer,
-                  datePublished: qaList[displayServiceName].date,
-                  author: {
-                    '@type': 'Person',
-                    name: qaList[displayServiceName].author,
-                  },
-                },
-              },
-            }),
-          }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(qaJson) }}
         />
       )}
 
@@ -180,24 +181,14 @@ export default function ServiceDetailPage() {
           <h1 className="text-3xl font-bold mb-4 text-center">{pageTitle}</h1>
           <p className="text-gray-300 mb-6 text-center">{pageDescription}</p>
 
-          {showArticle && (
-            <div className="bg-[#12141c] p-4 rounded mb-6 transition-all duration-300">
-              <Suspense fallback={<div>Makale içeriği yükleniyor...</div>}>
-                <LazyArticleContent />
-              </Suspense>
-            </div>
-          )}
-
-          <div className="text-center mb-8">
-            <button
-              className="inline-block border border-gray-600 px-5 py-2 text-sm rounded hover:bg-gray-800 transition"
-              onClick={() => setShowArticle((prev) => !prev)}
-            >
-              {showArticle
-                ? 'Servis Detaylarını Gizle ▲'
-                : 'Servis Detaylarını Göster ▼'}
-            </button>
-          </div>
+          {/* ✅ Sadece yeni toggle kart gösteriliyor */}
+          <Suspense
+            fallback={
+              <div className="text-center">Makale içeriği yükleniyor...</div>
+            }
+          >
+            <LazyArticleContent />
+          </Suspense>
 
           <h2 className="text-xl font-semibold mb-4">Müşteri Yorumları</h2>
           <ul className="space-y-6 text-left">
