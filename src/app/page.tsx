@@ -4,37 +4,37 @@ import { PhoneIcon } from '@heroicons/react/24/solid';
 
 export default function Home() {
   return (
-    <main className="bg-black text-white">
+    <main className="flex flex-col min-h-screen bg-black text-white">
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-24">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 max-w-xl">
+      <section className="flex flex-col justify-center items-center text-center px-6 pt-16 pb-10 md:pt-24 md:pb-16 min-h-[60vh]">
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 max-w-md md:max-w-xl break-words">
           Eterna Teknik Servis
         </h1>
-        <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-xl">
+        <p className="text-base md:text-xl text-gray-300 mb-8 max-w-md md:max-w-xl">
           Beyaz eşyalarınız için güvenilir, hızlı ve profesyonel teknik servis
           hizmeti.
         </p>
 
         <a
           href="tel:+908502324567"
-          className="mt-6 inline-flex items-center gap-4 px-8 py-4 rounded-full bg-gradient-to-r from-slate-900 via-neutral-300 to-slate-900 text-white text-lg font-semibold tracking-wide shadow-lg hover:shadow-xl transition-transform duration-300 hover:scale-105 text-shadow"
+          className="mt-4 inline-flex items-center gap-4 px-6 py-3 rounded-full bg-gradient-to-r from-slate-900 via-neutral-300 to-slate-900 text-white text-base md:text-lg font-semibold tracking-wide shadow-lg hover:shadow-xl transition-transform duration-300 hover:scale-105 text-shadow"
         >
-          <PhoneIcon className="w-6 h-6 text-white" />
+          <PhoneIcon className="w-5 h-5 md:w-6 md:h-6 text-white" />
           Hemen Servis Çağır
         </a>
 
-        <p className="mt-5 text-gray-400 text-sm md:text-base max-w-md mx-auto">
+        <p className="mt-4 text-gray-400 text-sm md:text-base max-w-xs md:max-w-md mx-auto">
           En hızlı şekilde teknik destek almak için hemen arayın.
         </p>
       </section>
 
       {/* Neden Bizi Tercih Etmelisiniz */}
-      <section className="bg-black text-white px-6 py-16">
+      <section className="bg-black text-white px-6 py-14 md:py-20">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl font-semibold mb-12">
+          <h2 className="text-2xl md:text-3xl font-semibold mb-10">
             Neden Bizi Tercih Etmelisiniz?
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-left">
             {[
               {
                 icon: '📞',
@@ -68,9 +68,11 @@ export default function Home() {
               },
             ].map(({ icon, title, desc }) => (
               <div key={title} className="flex items-start gap-4">
-                <div className="text-3xl">{icon}</div>
+                <div className="text-2xl mt-0.5">{icon}</div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-1">{title}</h3>
+                  <h3 className="font-semibold text-base md:text-lg mb-1">
+                    {title}
+                  </h3>
                   <p className="text-gray-400 text-sm">{desc}</p>
                 </div>
               </div>
@@ -80,10 +82,12 @@ export default function Home() {
       </section>
 
       {/* Hizmetler */}
-      <section className="bg-[#0d111a] px-6 py-16 text-white">
+      <section className="bg-[#0d111a] px-6 py-14 md:py-20 text-white">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl font-semibold mb-8">Hizmetlerimiz</h2>
-          <div className="grid md:grid-cols-3 gap-6 text-left">
+          <h2 className="text-2xl md:text-3xl font-semibold mb-8">
+            Hizmetlerimiz
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
             {[
               {
                 title: 'Buzdolabı Tamiri',
@@ -100,9 +104,9 @@ export default function Home() {
             ].map(({ title, desc }) => (
               <div
                 key={title}
-                className="bg-gray-900 p-6 rounded shadow hover:shadow-lg transition"
+                className="bg-gray-900 p-5 rounded shadow hover:shadow-lg transition"
               >
-                <h3 className="text-xl font-semibold mb-2">{title}</h3>
+                <h3 className="text-lg font-semibold mb-2">{title}</h3>
                 <p className="text-gray-400 text-sm">{desc}</p>
               </div>
             ))}
@@ -118,11 +122,11 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#0d111a] px-6 py-16 text-center text-white">
-        <h2 className="text-2xl font-semibold mb-4">
+      <section className="bg-gradient-to-t from-[#0d111a] to-black px-6 py-16 text-center text-white">
+        <h2 className="text-xl md:text-2xl font-semibold mb-4">
           Servis Talebi Oluşturmak Çok Kolay
         </h2>
-        <p className="mb-6 text-gray-300">
+        <p className="mb-6 text-gray-300 text-sm md:text-base max-w-sm mx-auto">
           Bir telefon kadar yakınız. Hemen iletişime geçin.
         </p>
         <a

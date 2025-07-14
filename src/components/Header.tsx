@@ -1,7 +1,10 @@
 'use client';
+
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import FloatingCallButton from './FloatingCallButton'; // ✅ Yeni eklendi
+import { useState } from 'react';
+import FloatingCallButton from './FloatingCallButton';
 
 const navItems = [
   { name: 'Anasayfa', href: '/' },
@@ -12,15 +15,19 @@ const navItems = [
 
 export default function Header() {
   const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <>
       <header className="bg-[#0f1117] py-4 px-6 shadow-md sticky top-0 z-50">
         <nav className="max-w-7xl mx-auto flex justify-between items-center">
-          <Link href="/" className="text-white font-bold text-lg">
+          {/* Logo */}
+          <Link href="/" className="text-white font-bold text-base md:text-lg">
             Eterna Teknik Servis
           </Link>
-          <ul className="flex space-x-6 text-sm font-medium">
+
+          {/* Desktop Menü */}
+          <ul className="hidden md:flex space-x-6 text-sm font-medium">
             {navItems.map((item) => (
               <li key={item.href}>
                 <Link
@@ -36,10 +43,42 @@ export default function Header() {
               </li>
             ))}
           </ul>
+
+          {/* Mobil Menü Butonu */}
+          <button
+            className="md:hidden text-white focus:outline-none"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Menüyü Aç/Kapat"
+          >
+            {isMenuOpen ? (
+              <XMarkIcon className="w-6 h-6" />
+            ) : (
+              <Bars3Icon className="w-6 h-6" />
+            )}
+          </button>
         </nav>
+
+        {/* Mobil Menü Açılır */}
+        {isMenuOpen && (
+          <div className="md:hidden mt-4 space-y-3 px-2 pb-4">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`block px-4 py-2 rounded text-sm font-medium ${
+                  pathname === item.href
+                    ? 'bg-white text-black'
+                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
+        )}
       </header>
 
-      {/* ✅ Sadece anasayfa haricinde göster */}
       {pathname !== '/' && <FloatingCallButton />}
     </>
   );
