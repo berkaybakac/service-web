@@ -39,59 +39,40 @@ npm install
 # Geliştirme sunucusunu başlatın
 npm run dev
 
-Ardından tarayıcıda `http://localhost:3000` adresine gidin.
-
----
+Ardından tarayıcıda [http://localhost:3000](http://localhost:3000) adresine gidin.
 
 ## 📁 Konfigürasyon
-
 - `src/config/company.ts` → Şirket bilgileri burada merkezi olarak tutulur.
 - `public/article.md` → Serpsonic makalesi markdown olarak buradan yüklenir.
 - `src/data/fakeReviews.ts` → Yapay müşteri yorumları
 - `tailwind.config.js`, `postcss.config.mjs`, `next-sitemap.config.js` → Stil ve SEO konfigürasyonları
 
----
-
 ## 🧪 Performans ve SEO
-
 Proje; mobilde ve masaüstünde aşağıdaki metrikleri hedefler:
 
-| Metrik           | Hedef    |
-|------------------|----------|
-| PageSpeed Skoru  | 100      |
-| Mobil Açılış Süresi | < 1sn    |
-| HTML Başlıklar   | Optimize |
-| OG/Twitter Etiketleri | Eksiksiz |
-| Schema.org       | Entegre  |
+- PageSpeed Skoru: 100
+- Mobil Açılış Süresi: < 1sn
+- HTML Başlıklar: Optimize
+- OG/Twitter Etiketleri: Eksiksiz
+- Schema.org: Entegre
 
 ### Doğrulama araçları:
-
-- [Google PageSpeed Insights](https://pagespeed.web.dev/)
+- [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
 - [Google Rich Results Test](https://search.google.com/test/rich-results)
-- [GTMetrix](https://gtmetrix.com/)
-- [WebPageTest](https://www.webpagetest.org/)
-- [Ahrefs](https://ahrefs.com/)
-- [ScreamingFrog](https://www.screamingfrog.co.uk/seo-spider/)
-
----
+- GTMetrix
+- WebPageTest
+- Ahrefs
+- ScreamingFrog
 
 ## 📌 Uyarı
-
-📣 Bu site **yetkili servis değildir**. Yalnızca **garanti dışı cihazlar** için bakım, onarım ve arıza çözümleri sunar.
+📣 Bu site yetkili servis değildir. Yalnızca garanti dışı cihazlar için bakım, onarım ve arıza çözümleri sunar.
 Bu bilgi her sayfada açık şekilde belirtilmiştir.
 
----
-
 ## 🚀 Deployment
-
 Proje Vercel üzerinde yayınlanmıştır:
-
 🔗 [https://service-web-blush.vercel.app](https://service-web-blush.vercel.app)
 
----
-
 ## 👨‍💻 Geliştirici
-
 Bu proje, **Eterna Teknoloji A.Ş.** bünyesinde,
 **Mersin Üniversitesi Bilgisayar Mühendisliği Zorunlu Yaz Stajı (07.07.2025 – 01.09.2025)** kapsamında
 **Berkay Bakaç** tarafından geliştirilmiştir.
