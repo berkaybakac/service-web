@@ -42,6 +42,7 @@ npm run dev
 Ardından tarayıcıda `http://localhost:3000` adresine gidin.
 
 ---
+
 ## ⚙️ Konfigürasyon
 
 - `src/config/company.ts` → Şirket bilgileri merkezi olarak tutulur
@@ -61,7 +62,7 @@ Proje; mobilde ve masaüstünde aşağıdaki metrikleri hedefler:
 - OG/Twitter Etiketleri: Eksiksiz
 - Schema.org: Entegre
 
-### Doğrulama araçları:
+### Doğrulama Araçları:
 
 - [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
 - [Rich Results Test](https://search.google.com/test/rich-results)
