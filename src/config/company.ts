@@ -25,7 +25,7 @@ type Company = {
 };
 
 const company: Company = {
-  url: 'https://example.com',
+  url: 'https://service-web-blush.vercel.app',
   name: 'Teknik Servis',
   legalName: 'XYZ Teknoloji A.Ş.',
   slogan: 'Beyaz Eşya Teknik Servisinde Güvenin Adı',
