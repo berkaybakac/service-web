@@ -2,9 +2,9 @@ import company from '@/config/company';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: `${company.name} | Beyaz Eşya Teknik Servisi`,
+  title: `${company.name} | Beyaz Eşya Tamiri & Teknik Servis Desteği`,
   description:
-    'Garantisi bitmiş beyaz eşyalar için profesyonel ve ekonomik teknik servis hizmeti. Buzdolabı, çamaşır makinesi, bulaşık makinesi ve daha fazlası.',
+    'Garantisi bitmiş beyaz eşyalar için profesyonel ve ekonomik teknik servis hizmeti. Buzdolabı, çamaşır makinesi, bulaşık makinesi ve daha fazlası için hızlı çözümler sunuyoruz.',
   keywords: [
     'beyaz eşya servisi',
     'buzdolabı tamiri',
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
     canonical: company.url,
   },
   openGraph: {
-    title: `${company.name} | Beyaz Eşya Teknik Servisi`,
+    title: `${company.name} | Beyaz Eşya Tamiri & Teknik Servis Desteği`,
     description:
-      'Profesyonel beyaz eşya teknik servis hizmeti. Hemen arayın, hızlıca destek alarak cihazınızı eski haline getirin.',
+      'Beyaz eşyalarınız için hızlı, garantili ve profesyonel teknik servis hizmeti. Hemen arayın, cihazınızı eski haline getirelim.',
     url: company.url,
     siteName: company.name,
     images: [
@@ -42,9 +42,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${company.name} | Beyaz Eşya Teknik Servisi`,
+    title: `${company.name} | Beyaz Eşya Tamiri & Teknik Servis Desteği`,
     description:
-      'Buzdolabı, çamaşır ve bulaşık makineleri için garantisi bitmiş cihazlara özel hızlı teknik servis.',
+      'Garantisi bitmiş beyaz eşyalarınız için hızlı teknik destek. Hemen arayın, yerinde çözüm alın.',
     images: [`${company.url}/service-web-og.webp`],
     site: company.name,
   },
