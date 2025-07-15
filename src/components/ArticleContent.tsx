@@ -10,15 +10,15 @@ export default function ArticleContent() {
 
   useEffect(() => {
     fetch('/article.md')
-      .then((res) => res.text())
-      .then((text) => setContent(text))
-      .catch((err) => {
+      .then(res => res.text())
+      .then(text => setContent(text))
+      .catch(err => {
         console.error('Makale yüklenemedi:', err);
         setContent('İçerik yüklenemedi.');
       });
   }, []);
 
-  const toggleExpanded = () => setExpanded((prev) => !prev);
+  const toggleExpanded = () => setExpanded(prev => !prev);
 
   return (
     <section
@@ -40,7 +40,7 @@ export default function ArticleContent() {
       <div className="flex justify-center mt-6">
         <button
           type="button"
-          onClick={(e) => {
+          onClick={e => {
             e.stopPropagation(); // Butona basınca section'a tıklanmış sayılmasın
             toggleExpanded();
           }}

@@ -9,7 +9,7 @@ const serviceNames = [
   'Televizyon',
 ];
 
-const serviceLinks = serviceNames.map((name) => ({
+const serviceLinks = serviceNames.map(name => ({
   name,
   href: `/hizmet?service=${encodeURIComponent(name)}`,
 }));

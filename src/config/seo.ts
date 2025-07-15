@@ -22,6 +22,9 @@ export const TOP_KEYWORDS = [
 
 export const DEFAULT_TITLE = `${COMPANY_NAME} | Beyaz Eşya, Klima, Kombi, Tamir Servisi`;
 
-export const DEFAULT_DESCRIPTION = `${COMPANY_NAME} olarak ${TOP_KEYWORDS
-  .slice(0, 5)
-  .join(', ')} gibi konularda hızlı ve güvenilir teknik destek sunuyoruz. 1 yıl garantili hizmet alın.`;
+export const DEFAULT_DESCRIPTION = `${COMPANY_NAME} olarak ${TOP_KEYWORDS.slice(
+  0,
+  5
+).join(
+  ', '
+)} gibi konularda hızlı ve güvenilir teknik destek sunuyoruz. 1 yıl garantili hizmet alın.`;

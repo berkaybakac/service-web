@@ -105,7 +105,7 @@ export default function ServiceDetailPage() {
         ratingValue: '4.7',
         reviewCount: fakeReviews.length.toString(),
       },
-      review: fakeReviews.map((r) => ({
+      review: fakeReviews.map(r => ({
         '@type': 'Review',
         author: { '@type': 'Person', name: r.author },
         reviewRating: {

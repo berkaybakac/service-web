@@ -26,7 +26,7 @@ const faqList = [
     answer:
       'Arçelik, Beko, Bosch, Siemens, Samsung, LG, Vestel, Altus, Profilo ve birçok farklı markaya {company.name} olarak teknik servis hizmeti sunuyoruz.',
   },
-].map((item) => ({
+].map(item => ({
   ...item,
   answer: item.answer.replace('{company.name}', company.name),
 }));

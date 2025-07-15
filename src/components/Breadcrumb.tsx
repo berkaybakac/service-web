@@ -20,7 +20,7 @@ export default function Breadcrumb() {
     const pathArray = pathParts.map((part, index) => {
       const label = decodeURIComponent(part)
         .replace(/-/g, ' ')
-        .replace(/\b\w/g, (c) => c.toUpperCase());
+        .replace(/\b\w/g, c => c.toUpperCase());
 
       return {
         name: label,

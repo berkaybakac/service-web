@@ -49,7 +49,7 @@ export default function Header() {
 
         {/* Masaüstü Menü */}
         <ul className="hidden md:flex space-x-6 text-sm font-medium">
-          {navItems.map((item) =>
+          {navItems.map(item =>
             item.name === 'Hizmetler' ? (
               <li key={item.name} className="relative" ref={dropdownRef}>
                 <div className="flex items-center gap-1">
@@ -73,7 +73,7 @@ export default function Header() {
                 </div>
                 {isDropdownOpen && (
                   <ul className="absolute left-0 mt-2 w-56 rounded border border-gray-700 bg-[#1a1d29] shadow-lg z-50">
-                    {serviceSubLinks.map((sub) => (
+                    {serviceSubLinks.map(sub => (
                       <li key={sub.href}>
                         <Link
                           href={sub.href}
@@ -121,7 +121,7 @@ export default function Header() {
       {/* Mobil Menü */}
       {isMenuOpen && (
         <div className="md:hidden mt-4 space-y-3 px-2 pb-4">
-          {navItems.map((item) => (
+          {navItems.map(item => (
             <div key={item.name}>
               <Link
                 href={item.href}
@@ -135,7 +135,7 @@ export default function Header() {
                 {item.name}
               </Link>
               {item.name === 'Hizmetler' &&
-                serviceSubLinks.map((sub) => (
+                serviceSubLinks.map(sub => (
                   <Link
                     key={sub.href}
                     href={sub.href}

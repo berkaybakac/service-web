@@ -9,7 +9,7 @@ export default function FAQPage() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'FAQPage',
-            mainEntity: faqList.map((item) => ({
+            mainEntity: faqList.map(item => ({
               '@type': 'Question',
               name: item.question,
               acceptedAnswer: {
