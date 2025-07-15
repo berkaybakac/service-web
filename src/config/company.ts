@@ -1,11 +1,11 @@
 type Company = {
   url: string;
-  name: string; // Kısa görünen isim (örn. "Teknik Servis")
-  legalName: string; // Yasal şirket adı (örn. "XYZ Teknoloji A.Ş.")
+  name: string;
+  legalName: string;
   slogan: string;
   phone: string;
   email: string;
-  taxNumber?: string; // VKN
+  taxNumber?: string;
   taxOffice?: string;
   mersisNumber?: string;
   address: {
@@ -19,9 +19,16 @@ type Company = {
     saturday: string;
     sunday: string;
   };
-  supportNote?: string; // Site altı bilgilendirme mesajı gibi: "Sadece garantisiz ürünler için hizmet sunulur."
-  officialServiceDisclaimer?: string; // Resmi yetkili servis uyarısı
+  supportNote?: string;
+  officialServiceDisclaimer?: string;
   copyright: string;
+
+  social?: {
+    facebook?: string;
+    twitter?: string;
+    linkedin?: string;
+    whatsapp?: string;
+  };
 };
 
 const company: Company = {
@@ -50,6 +57,12 @@ const company: Company = {
   officialServiceDisclaimer:
     'Web sitemiz üretici firmalarla resmi bir bağı bulunmayan özel servistir.',
   copyright: `© ${new Date().getFullYear()} Teknik Servis. Tüm hakları saklıdır.`,
+  social: {
+    facebook: 'https://facebook.com/teknikservisresmi',
+    twitter: 'https://twitter.com/teknikservisresmi',
+    linkedin: 'https://linkedin.com/company/teknikservisresmi',
+    whatsapp: 'https://wa.me/905551234567',
+  },
 };
 
 export default company;
