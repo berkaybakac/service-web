@@ -1,10 +1,10 @@
-// src/app/iletisim/head.tsx
 import company from '@/config/company';
+import { DEFAULT_DESCRIPTION } from '@/config/seo';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: `İletişim | ${company.name}`,
-  description: `${company.name} ile hemen iletişime geçin. Hızlı ve güvenilir teknik servis için bize ulaşın.`,
+  description: DEFAULT_DESCRIPTION,
   robots: {
     index: true,
     follow: true,
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: `İletişim | ${company.name}`,
-    description: `${company.name} ile hemen iletişime geçin. Hızlı ve güvenilir teknik servis için bize ulaşın.`,
+    description: DEFAULT_DESCRIPTION,
     url: `${company.url}/iletisim`,
     siteName: company.name,
     type: 'article',
@@ -23,6 +23,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: `İletişim | ${company.name}`,
-    description: `${company.name} ile hemen iletişime geçin. Hızlı ve güvenilir teknik servis için bize ulaşın.`,
+    description: DEFAULT_DESCRIPTION,
+    images: [`${company.url}/service-web-og.webp`],
   },
 };

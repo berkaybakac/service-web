@@ -1,10 +1,10 @@
-// src/app/hizmetler/head.tsx
 import company from '@/config/company';
+import { DEFAULT_DESCRIPTION } from '@/config/seo';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: `Hizmetlerimiz | ${company.name}`,
-  description: `Beyaz eşya, buzdolabı, klima ve daha fazlası için ${company.name} tarafından sunulan profesyonel teknik hizmetleri keşfedin.`,
+  description: DEFAULT_DESCRIPTION,
   robots: {
     index: true,
     follow: true,
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: `Hizmetlerimiz | ${company.name}`,
-    description: `Beyaz eşya, buzdolabı, klima ve daha fazlası için ${company.name} tarafından sunulan profesyonel teknik hizmetleri keşfedin.`,
+    description: DEFAULT_DESCRIPTION,
     url: `${company.url}/hizmetler`,
     siteName: company.name,
     locale: 'tr_TR',
@@ -23,6 +23,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: `Hizmetlerimiz | ${company.name}`,
-    description: `Beyaz eşya, buzdolabı, klima ve daha fazlası için ${company.name} tarafından sunulan profesyonel teknik hizmetleri keşfedin.`,
+    description: DEFAULT_DESCRIPTION,
+    images: [`${company.url}/service-web-og.webp`],
   },
 };

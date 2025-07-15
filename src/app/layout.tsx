@@ -1,4 +1,5 @@
 import company from '@/config/company';
+import { DEFAULT_DESCRIPTION, DEFAULT_TITLE } from '@/config/seo';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import FloatingCallButton from '../components/FloatingCallButton';
@@ -19,13 +20,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
   title: {
-    default: `${company.name} | Beyaz Eşya Teknik Servisi ve Hızlı Onarım`,
+    default: DEFAULT_TITLE,
     template: `%s | ${company.name}`,
   },
-  description: company.slogan,
+  description: DEFAULT_DESCRIPTION,
   openGraph: {
-    title: `${company.name} | Beyaz Eşya Teknik Servisi ve Hızlı Onarım`,
-    description: company.slogan,
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
     url: company.url,
     siteName: company.name,
     images: [
@@ -41,8 +42,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${company.name} | Beyaz Eşya Teknik Servisi ve Hızlı Onarım`,
-    description: company.slogan,
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
     images: [`${company.url}/service-web-og.webp`],
   },
   alternates: {

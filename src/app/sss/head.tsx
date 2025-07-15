@@ -3,26 +3,26 @@ import { DEFAULT_DESCRIPTION } from '@/config/seo';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: `Gizlilik Politikası | ${company.name}`,
+  title: `Sık Sorulan Sorular | ${company.name}`,
   description: DEFAULT_DESCRIPTION,
   robots: {
     index: true,
     follow: true,
   },
   alternates: {
-    canonical: `${company.url}/gizlilik`,
+    canonical: `${company.url}/sss`,
   },
   openGraph: {
-    title: `Gizlilik Politikası | ${company.name}`,
+    title: `Sık Sorulan Sorular | ${company.name}`,
     description: DEFAULT_DESCRIPTION,
-    url: `${company.url}/gizlilik`,
+    url: `${company.url}/sss`,
     siteName: company.name,
-    type: 'article',
     locale: 'tr_TR',
+    type: 'article',
   },
   twitter: {
     card: 'summary_large_image',
-    title: `Gizlilik Politikası | ${company.name}`,
+    title: `Sık Sorulan Sorular | ${company.name}`,
     description: DEFAULT_DESCRIPTION,
     images: [`${company.url}/service-web-og.webp`],
   },

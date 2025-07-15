@@ -1,27 +1,4 @@
-import company from '@/config/company';
 import faqList from '@/data/faqList';
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: `Sık Sorulan Sorular | ${company.name}`,
-  description: `${company.name} ile ilgili en çok merak edilen soruların cevaplarını burada bulabilirsiniz.`,
-  alternates: {
-    canonical: `${company.url}/sss`,
-  },
-  openGraph: {
-    title: `Sık Sorulan Sorular | ${company.name}`,
-    description: `${company.name} ile ilgili en çok merak edilen soruların cevaplarını burada bulabilirsiniz.`,
-    url: `${company.url}/sss`,
-    siteName: company.name,
-    locale: 'tr_TR',
-    type: 'article',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: `Sık Sorulan Sorular | ${company.name}`,
-    description: `${company.name} ile ilgili en çok merak edilen soruların cevaplarını burada bulabilirsiniz.`,
-  },
-};
 
 export default function FAQPage() {
   return (

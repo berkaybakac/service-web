@@ -1,11 +1,10 @@
-// src/app/kvkk/head.tsx
 import company from '@/config/company';
+import { DEFAULT_DESCRIPTION } from '@/config/seo';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: `KVKK Aydınlatma Metni | ${company.name}`,
-  description:
-    'Kişisel verilerin korunmasına dair yasal sorumluluklarımız hakkında bilgi edinin.',
+  description: DEFAULT_DESCRIPTION,
   robots: {
     index: true,
     follow: true,
@@ -15,8 +14,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: `KVKK Aydınlatma Metni | ${company.name}`,
-    description:
-      'Kişisel verilerin korunmasına dair yasal sorumluluklarımız hakkında bilgi edinin.',
+    description: DEFAULT_DESCRIPTION,
     url: `${company.url}/kvkk`,
     siteName: company.name,
     type: 'article',
@@ -25,7 +23,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: `KVKK Aydınlatma Metni | ${company.name}`,
-    description:
-      'Kişisel verilerin korunmasına dair yasal sorumluluklarımız hakkında bilgi edinin.',
+    description: DEFAULT_DESCRIPTION,
+    images: [`${company.url}/service-web-og.webp`],
   },
 };
