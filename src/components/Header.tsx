@@ -9,7 +9,8 @@ import {
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import serviceSubLinks from '../data/serviceLinks';
+import ServiceDropdown from './ServiceDropdown';
+import serviceSubLinks from '@/data/serviceLinks';
 
 const navItems = [
   { name: 'Anasayfa', href: '/' },
@@ -72,19 +73,9 @@ export default function Header() {
                   </button>
                 </div>
                 {isDropdownOpen && (
-                  <ul className="absolute left-0 mt-2 w-56 rounded border border-gray-700 bg-[#1a1d29] shadow-lg z-50">
-                    {serviceSubLinks.map(sub => (
-                      <li key={sub.href}>
-                        <Link
-                          href={sub.href}
-                          className="block px-4 py-2 text-sm text-white hover:bg-gray-700 transition"
-                          onClick={() => setIsDropdownOpen(false)}
-                        >
-                          {sub.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="absolute left-0 mt-2 z-50">
+                    <ServiceDropdown onNavigate={() => setIsDropdownOpen(false)} />
+                  </div>
                 )}
               </li>
             ) : (
