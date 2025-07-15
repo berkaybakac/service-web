@@ -1,5 +1,3 @@
-'use client';
-
 import company from '@/config/company';
 import faqList from '@/data/faqList';
 import type { Metadata } from 'next';
