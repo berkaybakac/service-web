@@ -1,3 +1,4 @@
+
 {
   "name": "service-web",
   "version": "0.1.0",
@@ -9,13 +10,6 @@
     "lint": "next lint",
     "postbuild": "next-sitemap"
   },
-  "browserslist": [
-    "last 2 Chrome versions",
-    "last 2 Firefox versions",
-    "last 2 Safari versions",
-    "not IE 11",
-    "not dead"
-  ],
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "next": "15.3.5",
