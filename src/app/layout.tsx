@@ -19,12 +19,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
   title: {
-    default: company.name,
+    default: `${company.name} | Beyaz Eşya Teknik Servisi ve Hızlı Onarım`,
     template: `%s | ${company.name}`,
   },
   description: company.slogan,
   openGraph: {
-    title: company.name,
+    title: `${company.name} | Beyaz Eşya Teknik Servisi ve Hızlı Onarım`,
     description: company.slogan,
     url: company.url,
     siteName: company.name,
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: company.name,
+    title: `${company.name} | Beyaz Eşya Teknik Servisi ve Hızlı Onarım`,
     description: company.slogan,
     images: [`${company.url}/service-web-og.webp`],
   },
@@ -95,6 +95,7 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <head>
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

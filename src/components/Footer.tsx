@@ -1,5 +1,6 @@
 import company from '@/config/company';
 import Link from 'next/link';
+import { FaWhatsapp } from 'react-icons/fa';
 
 export default function Footer() {
   return (
@@ -16,36 +17,12 @@ export default function Footer() {
 
         <nav aria-label="Alt menü">
           <ul className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm text-center">
-            <li>
-              <Link href="/" className="hover:underline">
-                Anasayfa
-              </Link>
-            </li>
-            <li>
-              <Link href="/hizmetler" className="hover:underline">
-                Hizmetler
-              </Link>
-            </li>
-            <li>
-              <Link href="/hakkimizda" className="hover:underline">
-                Hakkımızda
-              </Link>
-            </li>
-            <li>
-              <Link href="/iletisim" className="hover:underline">
-                İletişim
-              </Link>
-            </li>
-            <li>
-              <Link href="/gizlilik" className="hover:underline">
-                Gizlilik
-              </Link>
-            </li>
-            <li>
-              <Link href="/kvkk" className="hover:underline">
-                KVKK
-              </Link>
-            </li>
+            <li><Link href="/" className="hover:underline">Anasayfa</Link></li>
+            <li><Link href="/hizmetler" className="hover:underline">Hizmetler</Link></li>
+            <li><Link href="/hakkimizda" className="hover:underline">Hakkımızda</Link></li>
+            <li><Link href="/iletisim" className="hover:underline">İletişim</Link></li>
+            <li><Link href="/gizlilik" className="hover:underline">Gizlilik</Link></li>
+            <li><Link href="/kvkk" className="hover:underline">KVKK</Link></li>
           </ul>
         </nav>
 
@@ -103,6 +80,16 @@ export default function Footer() {
             >
               <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.77 0 5-2.24 5-5v-14c0-2.76-2.23-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.28c-.96 0-1.72-.79-1.72-1.75s.76-1.75 1.72-1.75 1.72.79 1.72 1.75-.77 1.75-1.72 1.75zm13.5 10.28h-3v-4.74c0-1.13-.02-2.58-1.57-2.58-1.58 0-1.83 1.23-1.83 2.5v4.82h-3v-9h2.88v1.23h.04c.4-.76 1.37-1.56 2.82-1.56 3.02 0 3.58 1.98 3.58 4.56v4.77z" />
             </svg>
+          </a>
+          <a
+            href="https://wa.me/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
+            title="WhatsApp"
+            className="hover:opacity-80 transition text-white text-[24px]"
+          >
+            <FaWhatsapp />
           </a>
         </div>
       </div>
