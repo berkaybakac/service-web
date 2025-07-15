@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useMemo, Suspense } from 'react';
 import Breadcrumb from '@/components/Breadcrumb';
 import company from '@/config/company';
 import { fakeReviews } from '@/data/fakeReviews';
@@ -7,13 +8,10 @@ import faqList from '@/data/faqList';
 import qaList from '@/data/qaList';
 import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
-import { Suspense, useMemo } from 'react';
 
 const LazyArticleContent = dynamic(
   () => import('@/components/ArticleContent'),
-  {
-    ssr: false,
-  }
+  { ssr: false }
 );
 
 const services = {
@@ -71,6 +69,20 @@ export default function ServiceDetailPage() {
 
   const qaData = qaList[displayServiceName];
   const faqData = faqList;
+
+  useEffect(() => {
+    if (pageTitle) document.title = `${pageTitle} | ${company.name}`;
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', pageDescription);
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'description';
+      meta.content = pageDescription;
+      document.head.appendChild(meta);
+    }
+  }, [pageTitle, pageDescription]);
 
   const jsonLd = useMemo(
     () => ({
