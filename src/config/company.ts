@@ -60,7 +60,7 @@ const company: Company = {
   social: {
     facebook: 'https://facebook.com/teknikservisresmi',
     twitter: 'https://twitter.com/teknikservisresmi',
-    linkedin: 'https://linkedin.com/company/teknikservisresmi',
+    //linkedin: 'https://linkedin.com/company/teknikservisresmi',
     whatsapp: 'https://wa.me/905551234567',
   },
 };
