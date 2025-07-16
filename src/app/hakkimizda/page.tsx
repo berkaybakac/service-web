@@ -3,7 +3,7 @@ import company from '@/config/company';
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-black text-white p-6">
-      <div className="max-w-4xl mx-auto py-12">
+      <div className="max-w-4xl mx-auto min-h-[1000px] py-12">
         <h1 className="text-4xl font-bold mb-6 text-center text-white">
           Hakkımızda
         </h1>

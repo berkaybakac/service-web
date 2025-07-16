@@ -191,7 +191,7 @@ export default function ServiceDetailPage() {
           </a>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto min-h-[1200px]">
           <Suspense
             fallback={
               <div className="text-center py-4">
