@@ -9,8 +9,9 @@ export default function Home() {
       {/* Hero Section */}
       <section className="flex flex-col justify-center items-center text-center px-6 pt-16 pb-10 md:pt-24 md:pb-16 min-h-[60vh]">
         <h1 className="text-4xl md:text-6xl font-bold mb-6 max-w-md md:max-w-xl break-words">
-          {company.name}
-        </h1>
+  Teknik Servis Hizmeti – Beyaz Eşya Tamiri
+</h1>
+
         <p className="text-base md:text-xl text-gray-300 mb-8 max-w-md md:max-w-xl">
           Beyaz eşyalarınız için güvenilir, hızlı ve profesyonel teknik servis
           hizmeti.

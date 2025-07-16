@@ -4,7 +4,8 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: `${company.name} | Beyaz Eşya Tamiri & Teknik Servis Desteği`,
   description:
-    'Garantisi bitmiş beyaz eşyalar için profesyonel ve ekonomik teknik servis hizmeti. Buzdolabı, çamaşır makinesi, bulaşık makinesi ve daha fazlası için hızlı çözümler sunuyoruz.',
+  'Beyaz eşyalar için ekonomik ve güvenilir teknik servis. Buzdolabı, çamaşır ve bulaşık makinesi için hızlı, garantili destek alın.',
+    
   keywords: [
     'beyaz eşya servisi',
     'buzdolabı tamiri',
