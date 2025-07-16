@@ -3,9 +3,9 @@ import { DEFAULT_DESCRIPTION, DEFAULT_TITLE } from '@/config/seo';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import FloatingCallButton from '../components/FloatingCallButton';
-import Footer from '../components/Footer';
 import Header from '../components/Header';
 import './globals.css';
+import dynamic from 'next/dynamic';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -15,6 +15,11 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+});
+
+const Footer = dynamic(() => import('../components/Footer'), {
+  ssr: false,
+  loading: () => null,
 });
 
 export const metadata: Metadata = {
@@ -97,7 +102,6 @@ export default function RootLayout({
     <html lang="tr">
       <head>
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="preconnect" href={company.url} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
