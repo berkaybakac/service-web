@@ -53,7 +53,7 @@ export default function Breadcrumb() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <nav aria-label="breadcrumb" className="mb-8">
-        <ol className="flex justify-center flex-wrap gap-2 text-gray-400 text-sm sm:text-base px-4 sm:px-0">
+        <ol className="flex justify-center flex-wrap gap-2 text-gray-200 text-sm sm:text-base px-4 sm:px-0">
           {breadcrumbs.map((crumb, index) => (
             <li key={crumb.href} className="flex items-center">
               <Link
@@ -63,7 +63,7 @@ export default function Breadcrumb() {
                 {crumb.name}
               </Link>
               {index < breadcrumbs.length - 1 && (
-                <span className="mx-2 text-gray-500">›</span>
+                <span className="mx-2 text-gray-300">›</span>
               )}
             </li>
           ))}
