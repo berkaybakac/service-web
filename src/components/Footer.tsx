@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0a0a0a] text-gray-400 text-sm px-6 py-8 mt-12">
+    <footer className="bg-[#0a0a0a] text-gray-400 text-sm px-6 py-8 mt-12 pb-24">
       <div className="max-w-6xl mx-auto space-y-6 text-center">
         <div>
           <p>{company.copyright}</p>
