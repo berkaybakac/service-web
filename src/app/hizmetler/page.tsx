@@ -53,15 +53,15 @@ export default function ServicesPage() {
             <Link
               key={title}
               href={`/hizmet?service=${encodeURIComponent(title)}`}
+              aria-label={`${title} sayfasına git`}
               className="bg-gray-900 p-6 rounded shadow hover:shadow-lg transition block hover:bg-gray-800"
             >
-              <h2 className="text-xl font-semibold mb-2">{title}</h2>
-              <p className="text-gray-400 text-sm">{desc}</p>
+              <h3 className="text-xl font-semibold mb-2">{title}</h3>
+              <p className="text-gray-300 text-sm">{desc}</p>
             </Link>
           ))}
         </div>
 
-        {/* Sayfayı bir tık uzatarak FloatingCallButton görünürlüğünü garantiliyoruz */}
         <div className="h-32" />
       </div>
     </main>

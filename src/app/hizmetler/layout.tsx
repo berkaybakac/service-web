@@ -1,8 +1,7 @@
-// src/app/hizmetler/layout.tsx
 export default function HizmetlerLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <div className="min-h-screen">{children}</div>;
 }

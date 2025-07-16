@@ -19,6 +19,14 @@ export const metadata: Metadata = {
     siteName: company.name,
     locale: 'tr_TR',
     type: 'article',
+    images: [
+      {
+        url: `${company.url}/service-web-og.webp`,
+        width: 1200,
+        height: 630,
+        alt: `${company.name} Hizmetler`,
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',

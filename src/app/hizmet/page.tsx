@@ -11,7 +11,9 @@ import { useSearchParams } from 'next/navigation';
 
 const LazyArticleContent = dynamic(
   () => import('@/components/ArticleContent'),
-  { ssr: false }
+  {
+    ssr: false,
+  }
 );
 
 const services = {
@@ -69,9 +71,7 @@ export default function ServiceDetailPage() {
       key.localeCompare(displayServiceName, 'tr', { sensitivity: 'base' }) === 0
   ) as ServiceKey | undefined;
 
-  const service = matchedServiceKey
-    ? services[matchedServiceKey]
-    : undefined;
+  const service = matchedServiceKey ? services[matchedServiceKey] : undefined;
 
   const pageTitle = service?.title || displayServiceName || 'Teknik Servis';
   const pageDescription =
@@ -92,7 +92,20 @@ export default function ServiceDetailPage() {
       meta.content = pageDescription;
       document.head.appendChild(meta);
     }
-  }, [pageTitle, pageDescription]);
+
+    const canonicalLink = document.querySelector('link[rel="canonical"]');
+    const canonicalHref = `${company.url}/hizmet?service=${encodeURIComponent(
+      displayServiceName
+    )}`;
+    if (canonicalLink) {
+      canonicalLink.setAttribute('href', canonicalHref);
+    } else {
+      const link = document.createElement('link');
+      link.rel = 'canonical';
+      link.href = canonicalHref;
+      document.head.appendChild(link);
+    }
+  }, [pageTitle, pageDescription, displayServiceName]);
 
   const jsonLd = useMemo(
     () => ({
@@ -168,7 +181,7 @@ export default function ServiceDetailPage() {
 
         <div className="max-w-3xl mx-auto text-center mb-8">
           <h1 className="text-3xl font-bold mb-2">{pageTitle}</h1>
-          <p className="text-gray-300">{pageDescription}</p>
+          <p className="text-gray-200">{pageDescription}</p>
 
           <a
             href={`tel:${company.phone}`}
@@ -181,7 +194,9 @@ export default function ServiceDetailPage() {
         <div className="max-w-4xl mx-auto">
           <Suspense
             fallback={
-              <div className="text-center">Makale içeriği yükleniyor...</div>
+              <div className="text-center py-4">
+                Makale içeriği yükleniyor...
+              </div>
             }
           >
             <LazyArticleContent />
@@ -201,7 +216,7 @@ export default function ServiceDetailPage() {
                   {'☆'.repeat(5 - review.stars)}
                 </div>
                 <p className="text-gray-200 text-sm">{review.text}</p>
-                <p className="text-gray-500 text-xs mt-2 italic">
+                <p className="text-gray-400 text-xs mt-2 italic">
                   – {review.author}
                 </p>
               </div>
@@ -219,10 +234,10 @@ export default function ServiceDetailPage() {
                     key={i}
                     className="bg-[#1e1f25] rounded-md px-4 py-3"
                   >
-                    <summary className="cursor-pointer font-semibold">
+                    <summary className="cursor-pointer font-semibold text-white">
                       {faq.question}
                     </summary>
-                    <p className="text-gray-400 mt-2">{faq.answer}</p>
+                    <p className="text-gray-300 mt-2">{faq.answer}</p>
                   </details>
                 ))}
               </div>

@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 
 const Footer = dynamic(() => import('./Footer'), {
   ssr: false,
-  loading: () => null,
+  loading: () => <div style={{ height: 280 }} />, // CLS koruması için yer tutucu
 });
 
 export default function LazyFooter() {
