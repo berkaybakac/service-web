@@ -66,7 +66,7 @@ export default function ServiceDetailPage() {
 
   const matchedServiceKey = Object.keys(services).find(
     key =>
-      key.toLowerCase().trim() === displayServiceName.toLowerCase().trim()
+      key.localeCompare(displayServiceName, 'tr', { sensitivity: 'base' }) === 0
   ) as ServiceKey | undefined;
 
   const service = matchedServiceKey
