@@ -53,7 +53,9 @@ const services = {
     title: 'Televizyon Tamiri',
     description: 'Görüntü, ses veya bağlantı sorunları için TV teknik desteği.',
   },
-};
+} as const;
+
+type ServiceKey = keyof typeof services;
 
 export default function ServiceDetailPage() {
   const searchParams = useSearchParams();
@@ -61,13 +63,21 @@ export default function ServiceDetailPage() {
   const displayServiceName = serviceNameParam
     ? decodeURIComponent(serviceNameParam.replace(/\+/g, ' '))
     : '';
-  const service = services[displayServiceName as keyof typeof services];
+
+  const matchedServiceKey = Object.keys(services).find(
+    key =>
+      key.toLowerCase().trim() === displayServiceName.toLowerCase().trim()
+  ) as ServiceKey | undefined;
+
+  const service = matchedServiceKey
+    ? services[matchedServiceKey]
+    : undefined;
 
   const pageTitle = service?.title || displayServiceName || 'Teknik Servis';
   const pageDescription =
     service?.description || 'Profesyonel teknik servis hizmetleri.';
 
-  const qaData = qaList[displayServiceName];
+  const qaData = matchedServiceKey ? qaList[matchedServiceKey] : undefined;
   const faqData = faqList;
 
   useEffect(() => {
