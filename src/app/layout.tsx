@@ -97,6 +97,7 @@ export default function RootLayout({
     <html lang="tr">
       <head>
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="preconnect" href={company.url} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

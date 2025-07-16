@@ -4,8 +4,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: `${company.name} | Beyaz Eşya Tamiri & Teknik Servis Desteği`,
   description:
-  'Beyaz eşyalar için ekonomik ve güvenilir teknik servis. Buzdolabı, çamaşır ve bulaşık makinesi için hızlı, garantili destek alın.',
-    
+    'Beyaz eşyalar için ekonomik ve güvenilir teknik servis. Buzdolabı, çamaşır ve bulaşık makinesi için hızlı, garantili destek alın.',
   keywords: [
     'beyaz eşya servisi',
     'buzdolabı tamiri',
@@ -100,6 +99,7 @@ export default function Head() {
 
   return (
     <>
+      <link rel="preconnect" href={company.url} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
