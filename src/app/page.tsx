@@ -139,6 +139,26 @@ export default function Home() {
           WhatsApp’tan Ulaş
         </a>
       </section>
+
+      <section className="bg-black text-white px-6 py-14 md:py-20">
+  <div className="max-w-3xl mx-auto text-center">
+    <h2 className="text-2xl md:text-3xl font-semibold mb-6">
+      Teknik Servis Hizmetimiz Hakkında
+    </h2>
+    <div className="space-y-5 text-gray-300 text-sm md:text-base leading-relaxed text-left">
+      <p>
+        Teknik Servis olarak beyaz eşyalarınızın bakımı, tamiri ve kurulumu konusunda uzman teknik servis hizmeti sunuyoruz. Teknik servis ihtiyaçlarınızı en kısa sürede karşılıyor, cihazlarınızın performansını en üst seviyeye çıkarıyoruz.
+      </p>
+      <p>
+        Kombi, klima, çamaşır makinesi, bulaşık makinesi, buzdolabı ve diğer tüm ev eşyaları için hızlı ve garantili çözüm sağlıyoruz. Eğitimli teknisyen kadromuz, yüksek müşteri memnuniyetini hedefleyerek çalışmaktadır. Teknik servis sürecimiz şeffaf, güvenilir ve uygun fiyatlıdır.
+      </p>
+      <p>
+        Teknik servis alanında en çok tercih edilen firmalardan biri olarak, her zaman yanınızdayız. İhtiyacınız olan her an bize ulaşabilir ve servis talebinizi kolayca oluşturabilirsiniz. Teknik Servis, uzman teknik servis çözümlerinde doğru adrestir.
+      </p>
+    </div>
+  </div>
+</section>
+
     </main>
   );
 }
