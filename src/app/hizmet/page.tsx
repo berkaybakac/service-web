@@ -1,21 +1,14 @@
 'use client';
 
-import { useEffect, useMemo, Suspense } from 'react';
+import { useEffect, useMemo } from 'react';
 import Breadcrumb from '@/components/Breadcrumb';
 import company from '@/config/company';
 import { fakeReviews } from '@/data/fakeReviews';
 import faqList from '@/data/faqList';
 import qaList from '@/data/qaList';
-import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
 import { PhoneIcon } from '@heroicons/react/24/solid';
-
-const LazyArticleContent = dynamic(
-  () => import('@/components/ArticleContent'),
-  {
-    ssr: false,
-  }
-);
+import ArticleContent from '@/components/ArticleContent';
 
 const services = {
   'Beyaz Eşya Servisi': {
@@ -194,13 +187,7 @@ export default function ServiceDetailPage() {
         </div>
 
         <div className="max-w-4xl mx-auto min-h-[1600px]">
-          <Suspense
-            fallback={
-              <div className="min-h-[800px] bg-gray-800 rounded-md animate-pulse" />
-            }
-          >
-            <LazyArticleContent />
-          </Suspense>
+          <ArticleContent />
 
           <h2 className="text-2xl font-semibold mt-10 mb-4 text-center">
             Müşteri Yorumları
