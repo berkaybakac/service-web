@@ -8,6 +8,7 @@ import faqList from '@/data/faqList';
 import qaList from '@/data/qaList';
 import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
+import { PhoneIcon } from '@heroicons/react/24/solid';
 
 const LazyArticleContent = dynamic(
   () => import('@/components/ArticleContent'),
@@ -185,9 +186,10 @@ export default function ServiceDetailPage() {
 
           <a
             href={`tel:${company.phone}`}
-            className="inline-block mt-4 px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition"
+            className="inline-flex items-center gap-2 mt-4 px-6 py-3 bg-green-800 text-white font-semibold rounded-lg hover:bg-green-900 transition"
           >
-            📞 Hemen Servis Çağır
+            <PhoneIcon className="w-5 h-5 shrink-0" aria-hidden="true" />
+            <span>Hemen Servis Çağır</span>
           </a>
         </div>
 
