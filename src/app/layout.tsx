@@ -6,6 +6,7 @@ import FloatingCallButton from '../components/FloatingCallButton';
 import Header from '../components/Header';
 import LazyFooter from '../components/LazyFooter'; // SSR: false burada devreye girecek
 import './globals.css';
+import { Suspense } from 'react';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -107,7 +108,14 @@ export default function RootLayout({
       >
         <Header />
         <main className="flex-grow">{children}</main>
-        <LazyFooter /> {/* SSR false burada aktif */}
+        <Suspense
+          fallback={
+            <div className="text-gray-500 text-center">Yükleniyor...</div>
+          }
+        >
+          <LazyFooter />
+        </Suspense>
+
         <FloatingCallButton />
       </body>
     </html>
