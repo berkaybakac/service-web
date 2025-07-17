@@ -193,10 +193,10 @@ export default function ServiceDetailPage() {
           </a>
         </div>
 
-        <div className="max-w-4xl mx-auto min-h-[1000px] min-h-screen sm:min-h-[1200px] md:min-h-[1400px] lg:min-h-[1600px]">
+        <div className="max-w-4xl mx-auto min-h-[1600px]">
           <Suspense
             fallback={
-              <div className="min-h-[600px] bg-gray-800 rounded-md animate-pulse" />
+              <div className="min-h-[800px] bg-gray-800 rounded-md animate-pulse" />
             }
           >
             <LazyArticleContent />
@@ -205,7 +205,7 @@ export default function ServiceDetailPage() {
           <h2 className="text-2xl font-semibold mt-10 mb-4 text-center">
             Müşteri Yorumları
           </h2>
-          <div className="flex space-x-4 overflow-x-auto pb-4 snap-x snap-mandatory">
+          <div className="flex space-x-4 overflow-x-auto pb-4 snap-x snap-mandatory min-h-[250px]">
             {fakeReviews.map((review, index) => (
               <div
                 key={index}
@@ -232,7 +232,7 @@ export default function ServiceDetailPage() {
                 {faqData.map((faq, i) => (
                   <details
                     key={i}
-                    className="bg-[#1e1f25] rounded-md px-4 py-3"
+                    className="bg-[#1e1f25] rounded-md px-4 py-3 overflow-hidden"
                   >
                     <summary className="cursor-pointer font-semibold text-white">
                       {faq.question}
