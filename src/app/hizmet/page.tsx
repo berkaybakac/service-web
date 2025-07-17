@@ -193,7 +193,7 @@ export default function ServiceDetailPage() {
           </a>
         </div>
 
-        <div className="max-w-4xl mx-auto min-h-[1600px] md:min-h-[1800px]">
+        <div className="max-w-4xl mx-auto min-h-[1000px] min-h-screen sm:min-h-[1200px] md:min-h-[1400px] lg:min-h-[1600px]">
           <Suspense
             fallback={
               <div className="min-h-[600px] bg-gray-800 rounded-md animate-pulse" />
