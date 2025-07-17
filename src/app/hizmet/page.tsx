@@ -193,12 +193,10 @@ export default function ServiceDetailPage() {
           </a>
         </div>
 
-        <div className="max-w-4xl mx-auto min-h-[1200px]">
+        <div className="max-w-4xl mx-auto min-h-[1600px] md:min-h-[1800px]">
           <Suspense
             fallback={
-              <div className="text-center py-4">
-                Makale içeriği yükleniyor...
-              </div>
+              <div className="min-h-[600px] bg-gray-800 rounded-md animate-pulse" />
             }
           >
             <LazyArticleContent />
