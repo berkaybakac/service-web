@@ -11,8 +11,8 @@ const serviceNames = [
 
 const serviceLinks = serviceNames.map(name => ({
   name,
-  href: `/hizmet?service=${encodeURIComponent(name)}`,
-  canonical: `https://service-web-blush.vercel.app/hizmet?service=${encodeURIComponent(
+  href: `/hizmet/${encodeURIComponent(name)}`,
+  canonical: `https://service-web-blush.vercel.app/hizmet/${encodeURIComponent(
     name
   )}`,
 }));

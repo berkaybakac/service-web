@@ -1,12 +1,12 @@
 'use client';
 
 import { useEffect, useMemo } from 'react';
+import { useParams } from 'next/navigation';
 import Breadcrumb from '@/components/Breadcrumb';
 import company from '@/config/company';
 import { fakeReviews } from '@/data/fakeReviews';
 import faqList from '@/data/faqList';
 import qaList from '@/data/qaList';
-import { useSearchParams } from 'next/navigation';
 import { PhoneIcon } from '@heroicons/react/24/solid';
 import ArticleContent from '@/components/ArticleContent';
 
@@ -54,11 +54,10 @@ const services = {
 type ServiceKey = keyof typeof services;
 
 export default function ServiceDetailPage() {
-  const searchParams = useSearchParams();
-  const serviceNameParam = searchParams.get('service');
-  const displayServiceName = serviceNameParam
-    ? decodeURIComponent(serviceNameParam.replace(/\+/g, ' '))
-    : '';
+  const { slug } = useParams();
+  const displayServiceName = decodeURIComponent(
+    Array.isArray(slug) ? slug[0] : slug || ''
+  );
 
   const matchedServiceKey = Object.keys(services).find(
     key =>
@@ -88,7 +87,7 @@ export default function ServiceDetailPage() {
     }
 
     const canonicalLink = document.querySelector('link[rel="canonical"]');
-    const canonicalHref = `${company.url}/hizmet?service=${encodeURIComponent(
+    const canonicalHref = `${company.url}/hizmet/${encodeURIComponent(
       displayServiceName
     )}`;
     if (canonicalLink) {
@@ -107,9 +106,7 @@ export default function ServiceDetailPage() {
       '@type': 'LocalBusiness',
       name: `${company.name} - ${pageTitle}`,
       description: pageDescription,
-      url: `${company.url}/hizmet?service=${encodeURIComponent(
-        displayServiceName
-      )}`,
+      url: `${company.url}/hizmet/${encodeURIComponent(displayServiceName)}`,
       telephone: company.phone,
       address: {
         '@type': 'PostalAddress',

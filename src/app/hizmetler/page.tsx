@@ -52,7 +52,7 @@ export default function ServicesPage() {
           {services.map(({ title, desc }) => (
             <Link
               key={title}
-              href={`/hizmet?service=${encodeURIComponent(title)}`}
+              href={`/hizmet/${encodeURIComponent(title)}`}
               aria-label={`${title} sayfasına git`}
               className="bg-gray-900 p-6 rounded shadow hover:shadow-lg transition block hover:bg-gray-800"
             >
