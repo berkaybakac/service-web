@@ -1,32 +1,33 @@
-// src/app/hizmet/[slug]/head.tsx
-
+import { Metadata } from 'next';
 import company from '@/config/company';
 import { DEFAULT_DESCRIPTION } from '@/config/seo';
-import type { Metadata } from 'next';
 
 type Props = {
   params: { slug: string };
 };
 
 export function generateMetadata({ params }: Props): Metadata {
-  const decoded = decodeURIComponent(params.slug);
-  const title = `${decoded} | ${company.name}`;
-  const canonical = `${company.url}/hizmet/${encodeURIComponent(decoded)}`;
+  const decodedSlug = decodeURIComponent(params.slug || '');
+  const pageTitle = `${decodedSlug} | ${company.name}`;
+  const pageDescription = `${decodedSlug} hizmeti hakkında detaylı bilgi alın. ${DEFAULT_DESCRIPTION}`;
+  const canonicalUrl = `${company.url}/hizmet/${encodeURIComponent(
+    decodedSlug
+  )}`;
 
   return {
-    title,
-    description: DEFAULT_DESCRIPTION,
+    title: pageTitle,
+    description: pageDescription,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     robots: {
       index: true,
       follow: true,
     },
-    alternates: {
-      canonical,
-    },
     openGraph: {
-      title,
-      description: DEFAULT_DESCRIPTION,
-      url: canonical,
+      title: pageTitle,
+      description: pageDescription,
+      url: canonicalUrl,
       siteName: company.name,
       locale: 'tr_TR',
       type: 'article',
@@ -35,14 +36,14 @@ export function generateMetadata({ params }: Props): Metadata {
           url: `${company.url}/service-web-og.webp`,
           width: 1200,
           height: 630,
-          alt: title,
+          alt: `${company.name} ${decodedSlug}`,
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title,
-      description: DEFAULT_DESCRIPTION,
+      title: pageTitle,
+      description: pageDescription,
       images: [`${company.url}/service-web-og.webp`],
     },
   };
