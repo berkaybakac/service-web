@@ -21,9 +21,7 @@ export const metadata: Metadata = {
   authors: [{ name: company.name, url: company.url }],
   publisher: company.name,
   themeColor: '#0f1117',
-  alternates: {
-    canonical: company.url,
-  },
+
   openGraph: {
     title: `${company.name} | Beyaz Eşya Tamiri & Teknik Servis Desteği`,
     description:
