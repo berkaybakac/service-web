@@ -1,3 +1,5 @@
+import company from '@/config/company';
+
 const serviceNames = [
   'Beyaz Eşya Servisi',
   'Buzdolabı',
@@ -11,10 +13,8 @@ const serviceNames = [
 
 const serviceLinks = serviceNames.map(name => ({
   name,
-  href: `/hizmet/${encodeURIComponent(name)}`,
-  canonical: `https://service-web-blush.vercel.app/hizmet/${encodeURIComponent(
-    name
-  )}`,
+  href: `/hizmet/${encodeURIComponent(name)}`, // ✅ yeni slug uyumlu
+  canonical: `${company.url}/hizmet/${encodeURIComponent(name)}`, // ✅ config'ten alınsın
 }));
 
 export default serviceLinks;

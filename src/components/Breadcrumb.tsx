@@ -17,10 +17,26 @@ export default function Breadcrumb() {
     const cleanPath = pathname.split('?')[0];
     const pathParts = cleanPath.split('/').filter(Boolean);
 
+    const serviceTitleMap: Record<string, string> = {
+      'Beyaz Eşya Servisi': 'Beyaz Eşya Servisi',
+      Buzdolabı: 'Buzdolabı',
+      'Çamaşır Makinesi': 'Çamaşır Makinesi',
+      'Bulaşık Makinesi': 'Bulaşık Makinesi',
+      Fırın: 'Fırın & Ocak Tamiri',
+      Klima: 'Klima',
+      Kombi: 'Kombi',
+      Televizyon: 'Televizyon',
+    };
+
     const pathArray = pathParts.map((part, index) => {
-      const label = decodeURIComponent(part)
-        .replace(/-/g, ' ')
-        .replace(/\b\w/g, c => c.toUpperCase());
+      const decoded = decodeURIComponent(part);
+      let label;
+
+      if (decoded === 'hizmet') {
+        label = 'Hizmetler';
+      } else {
+        label = serviceTitleMap[decoded] || decoded;
+      }
 
       return {
         name: label,
